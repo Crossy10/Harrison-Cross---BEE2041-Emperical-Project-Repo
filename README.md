@@ -37,13 +37,13 @@ Emperical project/
 ├── refs.bib                           # Bibliography
 │
 ├── data/
-│    ├── raw      # Raw data
-│    └── cleaned      # Clean data
+│    ├── raw                               # Raw data
+│    └── clean                             # Clean data
 │
 ├── source/
-│    ├── script.py            # Main analysis script
-│        ├── data_cleaning.py            # cleaning script - seperate??
-│        └── data_analysis.py            # analysis script - seperate??
+│    ├── script.py                           # Main analysis script
+│        ├── data_cleaning.py                           # cleaning script - seperate??
+│        └── data_analysis.py                           # analysis script - seperate??
 │
 ├── results/
 │    ├── figures/
