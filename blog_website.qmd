@@ -1,0 +1,15 @@
+---
+title: "hellpo?"
+author: "Your Name"
+format: html
+execute:
+  echo: false
+---
+
+## Introduction
+
+This blog explores the relationship between GDP per capita and happiness.
+
+We use data from the World Happiness Report.
+
+---
