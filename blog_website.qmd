@@ -8,8 +8,6 @@ execute:
 
 ## Introduction
 
-This blog explores the relationship between GDP per capita and happiness.
-
-We use data from the World Happiness Report.
+This blog
 
 ---
