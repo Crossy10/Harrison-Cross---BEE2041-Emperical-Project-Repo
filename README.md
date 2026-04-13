@@ -1,7 +1,7 @@
-# Harrison-Cross: Emperical-Project ReadME
+# Harrison Cross: Emperical Project README
 
-**Author:** Harrison Cross
-**Date:** 13-04-2026
+**Author:** Harrison Cross  
+**Date:** 13-04-2026  
 **Contact:** [hc891@exeter.ac.uk](mailto:hc891@exeter.ac.uk)
 
 ---
