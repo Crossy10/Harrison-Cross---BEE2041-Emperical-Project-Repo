@@ -20,3 +20,58 @@
 ---
 
 ## Overview
+
+---
+
+## Data
+
+---
+
+## Repository Structure
+
+```
+Emperical project/
+├── README.md
+├── Makefile
+├── website
+├── refs.bib                           # Bibliography
+│
+├── data/
+│    ├── raw      # Raw data
+│    └── cleaned      # Clean data
+│
+├── source/
+│    ├── script.py            # Main analysis script
+│        ├── data_cleaning.py            # cleaning script - seperate??
+│        └── data_analysis.py            # analysis script - seperate??
+│
+├── results/
+│    ├── figures/
+│    └── tables/
+|
+└── .gitignore
+```
+
+---
+
+## Requirements
+
+### System
+
+### Python Packages
+
+---
+
+## Running Instructions
+
+---
+
+## Outputs
+
+---
+
+## Methods
+
+---
+
+## References and Resources
