@@ -25,5 +25,4 @@ jobs:
       - name: Publish
         uses: quarto-dev/quarto-actions/publish@v2
         with:
-          path: website_stuff
           target: gh-pages
