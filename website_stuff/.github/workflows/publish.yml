@@ -1,4 +1,4 @@
-name: Publish Quarto site
+name: Published Quarto site 
 
 on:
   push:
