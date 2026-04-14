@@ -8,6 +8,6 @@ execute:
 
 ## Introduction
 
-This blog
+This blog is where the start of the wesbite will go
 
 ---
