@@ -1,9 +1,0 @@
----
-title: "Results from the data"
----
-
-## Introduction
-
-This is where the main part of website will go
-
----
