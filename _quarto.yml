@@ -5,9 +5,9 @@ website:
   title: "My Website for emperical project"
   navbar:
     left:
-      - href: blog_website.qmd
-        text: Home
       - href: index.qmd
+        text: Home
+      - href: blog_website.qmd
         text: Info
       - href: results.qmd
         text: Results

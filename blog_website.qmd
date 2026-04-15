@@ -1,13 +1,22 @@
----
-title: "hellpo?"
-author: "Your Name"
-format: html
-execute:
-  echo: false
----
-
-## Introduction
-
-This blog is where the start of the wesbite will go
 
 ---
+title: "My  Website"
+---
+
+## Hello!
+
+My name is YOUR NAME.
+
+I study YOUR DEGREE.
+
+### Edit this sentence
+I am interested in ...
+
+### Further edit this site 
+it's all just markdown!
+
+This is a numbered list
+
+1. first
+2. second
+3. third
