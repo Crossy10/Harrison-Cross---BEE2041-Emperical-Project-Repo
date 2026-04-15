@@ -26,6 +26,7 @@
 ## Data
 
 **Note:** The raw data is what is required, it will automatically get cleaned. This clean data will be what is used in the analysis, which is done automatically and updated automatically.
+
 ---
 
 ## Repository Structure
