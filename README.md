@@ -25,6 +25,7 @@
 
 ## Data
 
+**Note:** The raw data is what is required, it will automatically get cleaned. This clean data will be what is used in the analysis, which is done automatically and updated automatically.
 ---
 
 ## Repository Structure
@@ -41,9 +42,7 @@ Emperical project/
 │    └── clean                             # Clean data
 │
 ├── source/
-│    ├── script.py                           # Main analysis script
-│        ├── data_cleaning.py                           # cleaning script - seperate??
-│        └── data_analysis.py                           # analysis script - seperate??
+│    └── data_analysis.py                           # python coding script
 │
 ├── results/
 │    ├── figures/
@@ -64,12 +63,15 @@ Emperical project/
 |
 └── .gitignore
 ```
+All raw data lives in `data/raw_data`, all source code in `source/`, and all output is automatically exported to `results/`.
+
 
 ---
 
 ## Requirements
-
 ### System
+- Python 3 (tested on **Python 3.12.3**, WSL)
+- `make` (optional, but recommended)
 
 ### Python Packages
 
