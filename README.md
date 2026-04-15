@@ -49,6 +49,19 @@ Emperical project/
 │    ├── figures/
 │    └── tables/
 |
+│
+├── website_coding/
+│    ├── _quarto.yml
+|    ├── about.qmd
+|    ├── blog_website.qmd
+|    ├── conclusion.qmd
+|    ├── index.qmd
+|    ├── results.qmd
+│    └── styles.css
+|
+├── .github/workflows/
+│    ├── publish.yml
+|
 └── .gitignore
 ```
 
