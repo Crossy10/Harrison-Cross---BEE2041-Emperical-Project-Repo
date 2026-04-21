@@ -1,6 +1,6 @@
 ---
 title: "How to win the Six Nations"
-heading: "A breakdown of the key factors in determining which are the most important for winning Europe's mos prestigous International Rugby Tournament"
+subtitle: "A breakdown of the key factors in determining which are the most important for winning Europe's mos prestigous International Rugby Tournament"
 author: "Harrison Cross"
 format: html
 execute:
