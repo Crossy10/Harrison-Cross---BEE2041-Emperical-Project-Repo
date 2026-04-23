@@ -14,11 +14,18 @@
     "text": "This blog is where the start of the wesbite will go"
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "results.html",
+    "href": "results.html",
+    "title": "Results from the data",
     "section": "",
-    "text": "About\nThis is the about page."
+    "text": "This is where the main part of website will go"
+  },
+  {
+    "objectID": "results.html#introduction",
+    "href": "results.html#introduction",
+    "title": "Results from the data",
+    "section": "",
+    "text": "This is where the main part of website will go"
   },
   {
     "objectID": "conclusion.html",
@@ -49,17 +56,10 @@
     "text": "My name is YOUR NAME.\nI study YOUR DEGREE.\n\n\nI am interested in …\n\n\n\nit’s all just markdown!\nThis is a numbered list\n\nfirst\nsecond\nthird"
   },
   {
-    "objectID": "results.html",
-    "href": "results.html",
-    "title": "Results from the data",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
     "section": "",
-    "text": "This is where the main part of website will go"
-  },
-  {
-    "objectID": "results.html#introduction",
-    "href": "results.html#introduction",
-    "title": "Results from the data",
-    "section": "",
-    "text": "This is where the main part of website will go"
+    "text": "About\nThis is the about page."
   }
 ]
