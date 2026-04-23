@@ -45,3 +45,8 @@ a:hover {
   text-align: left;
   display: block;
 }
+
+/* Sometimes Quarto uses this class for the title */
+.toc-title {
+  text-align: left !important;
+}
