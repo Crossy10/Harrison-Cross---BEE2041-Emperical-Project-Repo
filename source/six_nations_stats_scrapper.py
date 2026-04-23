@@ -26,7 +26,7 @@ from collections import defaultdict
 
 ROOT = "/home/hcross27/BEE2041/Emperical_Project/Harrison-Cross---BEE2041-Emperical-Project-Repo/"
 
-DAT_RAW = ROOT+'data/raw_data'
+DAT_RAW = ROOT+'data/raw_data/'
 
 # ==============================================================================
 # 1. Scrape stats for every year (2000-2026) → long-format list of dicts
