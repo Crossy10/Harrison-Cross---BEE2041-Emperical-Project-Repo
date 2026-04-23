@@ -38,3 +38,10 @@ a:hover {
 .navbar a {
   color: #ffffff !important;
 }
+
+
+/* Fix the "On this page" title */
+#TOC::before {
+  text-align: left;
+  display: block;
+}
