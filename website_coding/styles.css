@@ -6,7 +6,7 @@ h1, h2 {
 
 body {
   background-color: #fff3e6;
-  font-family: "Segoe", serif;
+  font-family: 'Segoe UI', serif;
   font-size: 16px;
   color: #1f2937;
 }
@@ -37,16 +37,4 @@ a:hover {
 
 .navbar a {
   color: #ffffff !important;
-}
-
-
-/* Fix the "On this page" title */
-#TOC::before {
-  text-align: left;
-  display: block;
-}
-
-/* Sometimes Quarto uses this class for the title */
-.toc-title {
-  text-align: left !important;
 }
