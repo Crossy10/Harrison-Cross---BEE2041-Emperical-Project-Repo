@@ -6,5 +6,35 @@ h1, h2 {
 
 body {
   background-color: #fff3e6;
-  font-family: "Georgia", serif;
+  font-family: "Segoe", serif;
+  font-size: 16px;
+  color: #1f2937;
+}
+
+/* ===== Links ===== */
+a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Callout boxes (Quarto divs) ===== */
+.callout {
+  border-left: 4px solid #2563eb;
+  background: #f0f7ff;
+  padding: 10px 15px;
+  margin: 1em 0;
+  border-radius: 6px;
+}
+
+/* ===== Navbar (if using Quarto website) ===== */
+.navbar {
+  background-color: #111827;
+}
+
+.navbar a {
+  color: #ffffff !important;
 }
