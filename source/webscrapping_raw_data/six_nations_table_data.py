@@ -1,44 +1,27 @@
 """
-six_nations_scraper.py          Harrison Cross          22-04-2026
+six_nations_table_data.py                                        Harrison Cross
 ---|----1----|----2----|----3----|----4----|----5----|----6----|----7----|----8
 
-Scrapes team-level stats from the Six Nations website for every tournament
-year from 2000 to 2026, then reshapes the data into a clean wide-format CSV.
+This file creates the basic raw data that will be used as the backbone to the rest of the raw data and subsequently for the rest of the project
 
-The site is JavaScript-rendered, so we use Playwright 
-
-The data has been provided in replication materials in dta format, and hence is read in directly with pd.read_stata().  In order to replicate this file, the only required change is the ROOT directory, indicated on line 29.
-
-This file uses Causal forests, as well as standard regression analysis. For details on the underlying causal forest implementation, please refer to:
-https://econml.azurewebsites.net/spec/estimation/forest.html
-
-Full details related to the replication of this file can be found in the README code in the top level of this directory.
-"""
-
-""" obtaining_raw_data.py               Harrison Cross               22-04-2026
----|----1----|----2----|----3----|----4----|----5----|----6----|----7----|----8
-
-  This file creates the basic raw data that will be used as the backbone to the rest of the raw data and subsequently for the rest of the project
-
-  The data comes from the table from each year from the Six Nations Rugby website where we copied the result table gtom each year.
+  The data comes from the table from each year from the Six Nations Rugby website where we copied the result table from each year.
 https://www.sixnationsrugby.com/en/m6n/fixtures/202600/table
 
 At times where the table was unclear, I used the corresponding results table from https://www.rugbypass.com/six-nations/history/ 
 
 This code will create the basic raw data and save into the data folder. 
-In order to replicate this file, the only required change is the ROOT directory, indicated on line 25.
-The basic raw data can, however, simply be obtained from the GitHub repo - this code is only for the creation.
 
 Full details related to the replication of this file can be found in the README code in the top level of this directory.
-
+The basic raw data can, however, simply be obtained from the GitHub repo - this code is only for the creation.
 """
+
 
 # ==============================================================================
 # 0. Imports the necessary Python Libraries and directory locations
 # ==============================================================================
 
 import pandas as pd
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright # set up Playwright to scrape
 
 
 ROOT = "/home/hcross27/BEE2041/Emperical_Project/Harrison-Cross---BEE2041-Emperical-Project-Repo/"
@@ -58,17 +41,16 @@ years = range(2000, 2027)
 rows = []
 
 with sync_playwright() as p:
-    # Launch a headless Chromium browser — no visible window opens.
     browser = p.chromium.launch(headless=True)
     page = browser.new_page()
 
     for year in years:
         print(f"Scraping table from {year}...")
 
-        url = f"https://www.sixnationsrugby.com/en/m6n/fixtures/{year}00/table"
+        url = f"https://www.sixnationsrugby.com/en/m6n/fixtures/{year}00/table" # URL for the table page for a given year
         page.goto(url)
 
-        # Waiting for 6 seconds to allow content to load and to finish rendering the stat cards.
+        # Waiting for 6 seconds to allow content to load and to finish rendering the stat cards. This is also so we repliate human behaviour and avoid sending too many rapid-fire requests to the server which could be flagged as bot activity.
         page.wait_for_timeout(6000)
 
 
@@ -86,10 +68,10 @@ with sync_playwright() as p:
 
         metric_TABLE_columns = [head.inner_text().strip()for head in headers]
         
-        col_index = {h: i for i, h in enumerate(metric_TABLE_columns)}
+        col_index = {h: i for i, h in enumerate(metric_TABLE_columns)} # mapping of column name to its index, e.g. "Points Scored" → 3, using dictionary comprehension
         
-        for tr in table.query_selector_all("tbody tr"):
-            data_rows = tr.query_selector_all("td")
+        for tr in table.query_selector_all("tbody tr"): # loop through each row of the table body
+            data_rows = tr.query_selector_all("td") # get the data cells in the row
 
             # Each data row needs at least as many cells as there are headers.
             if len(data_rows)<len(metric_TABLE_columns):
@@ -97,17 +79,18 @@ with sync_playwright() as p:
             
             data_vals = [c.inner_text().strip() for c in data_rows]
 
-            row = {'year': year}
-
-            for web_col in metric_TABLE_columns:
-                idx = col_index.get(web_col)
+            row = {'year': year} 
+            
+            # loop through each column name as per the website, e.g. "Points Scored" and get the index of this column, e.g. 3 for "Points Scored".
+            for web_col in metric_TABLE_columns:  
+                idx = col_index.get(web_col) 
 
                 # If a column isn't present for this year, fill with None.
                 if idx is None:
                     row[web_col] = None
                     continue
 
-                raw = data_vals[idx]
+                raw = data_vals[idx] 
 
                 # Team name: normalise to title case (e.g. "FRANCE" → "France")
                 if web_col == 'TEAM':
@@ -120,27 +103,29 @@ with sync_playwright() as p:
                     except ValueError:
                          pass
                 
-            rows.append(row)
+            rows.append(row) 
 
     browser.close()
 
 
 # ==============================================================================
-# 3. Assemble and clean the dataframe
+# 2. Assemble and clean the dataframe
 # ==============================================================================
 
 fixtures_table_df = pd.DataFrame(rows)
 print("\n\n\nChecking the first 5 rows to see if successful\n")
 print(fixtures_table_df.head())    # checking the first 5 rows to see if it's as wanted
 
+# renaming columns 
 fixtures_table_df2 = fixtures_table_df.rename(columns={
      'POS':'final_position', 'TEAM':'team', 'P':'matches_played',
      'W':'matches_won', 'D':'matches_drawn', 'L':'matches_lost',
      'PF':'points_scored', 'PA':'points_conceded', 'DIFF':'points_difference',
      'TF':'tries_scored', 'TA':'tries_conceded', 'BP':'bonus_points',
-     'PTS':'table_points'})
+     'PTS':'table_points'}) 
 
 
+# derive grand slam column based on final position and matches won (only if they won all 5 matches did they get a grand slam, otherwise if they were first but didn't win all 5 matches then no grand slam, and if they weren't first then N/A since not relevant)
 def derive_grand_slam(df):
     if df['final_position'] == 1 and (df['matches_won'] == 5):
         return 1
@@ -169,7 +154,7 @@ fixtures_table_df2 = fixtures_table_df2.sort_values(
 ).reset_index(drop=True)
 
 # ==============================================================================
-# 4. Output
+# 3. Output
 # ==============================================================================
 
 print("\n\n\nChecking the first 20 rows to see if successful\n")
@@ -180,22 +165,24 @@ print(fixtures_table_df2.head(20))
 # 4. cleaning
 # ==============================================================================
 
-# Helper to patch a single cell
+# Some manual fixes to the data based on cross-checking with the official tables on the Six Nations website and on RugbyPass, where there were errors. The function below is a helper to make these fixes more concise.
 def fix(year, team, col, value):
     mask = (fixtures_table_df2["year"] == year) & (fixtures_table_df2["team"] == team)
     fixtures_table_df2.loc[mask, col] = value
 
-# 2015: Ireland was champion, scraper misread position
+# 2015: Ireland was champion
 fix(2015, "Ireland", "final_position", 1)
 fix(2015, "Ireland", "grand_slam", 0)
 
-# 2019: France 4th, Scotland 5th (scraper swapped them)
+# 2019: France 4th, Scotland 5th 
 fix(2019, "France", "final_position", 4)
 fix(2019, "Scotland", "final_position", 5)
 
 # 2009 Italy: official points_difference was -121 not -79
 fix(2009, "Italy", "points_difference", -121)
 
+
+# re-sort after manual fixes
 fixtures_table_df2 = fixtures_table_df2.sort_values(
     by=['year','final_position'],
     ascending=[True, True]

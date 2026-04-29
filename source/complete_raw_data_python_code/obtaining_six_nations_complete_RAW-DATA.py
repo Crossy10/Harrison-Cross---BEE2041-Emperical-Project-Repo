@@ -1,9 +1,26 @@
+"""
+obtaining_six_nations_complete_RAW-DATA.py                       Harrison Cross
+---|----1----|----2----|----3----|----4----|----5----|----6----|----7----|----8
+
+This file creates the complete raw data that will be used for the rest of the project
+
+This code will use SQL and merge the basic raw data and the webscrapped stats data and save into the raw data folder. 
+
+Full details related to the replication of this file can be found in the README code in the top level of this directory.
+The complete raw data can, however, simply be obtained from the GitHub repo - this code is only for the creation.
+"""
+
+
+# ==============================================================================
+# 0. Imports the necessary Python Libraries and directory locations
+# ==============================================================================
 import pandas as pd
 import sqlite3
 
 ROOT = "/home/hcross27/BEE2041/Emperical_Project/Harrison-Cross---BEE2041-Emperical-Project-Repo/"
 
 DAT_RAW = ROOT+'data/raw_data/'
+
 # ==============================================================================
 # 1. Load both CSVs
 # ==============================================================================
@@ -11,25 +28,26 @@ DAT_RAW = ROOT+'data/raw_data/'
 stats_raw = pd.read_csv(DAT_RAW + 'raw_dataWIDE_FORMAT-six_nations_RAWstats_.csv')
 tables_raw = pd.read_csv(DAT_RAW + 'six_nations_fixtures_table_scraped.csv', keep_default_na=False, na_values=[''])
 
- 
 
+ 
 # ==============================================================================
 # 2. Load into an in-memory SQLite database
 # ==============================================================================
  
 con = sqlite3.connect(":memory:")
-stats_raw.to_sql("stats_raw", con, index=False, if_exists="replace")
-tables_raw.to_sql("tables_raw", con, index=False, if_exists="replace")
+stats_raw.to_sql("stats_raw", con, index=False, if_exists="replace") # load stats_raw into SQL table
+tables_raw.to_sql("tables_raw", con, index=False, if_exists="replace") # load tables_raw into SQL table
+
+
 
 # ==============================================================================
 # 3. SQL JOIN on year + team
-#    - All fixture table columns kept with their original names
-#    - raw_stats columns brought in; 'try_scored' from raw_stats renamed
-#      to avoid collision with 'tries_scored' in fixtures
-#    - raw_stats 'points' renamed to avoid collision with fixtures 'points_scored'
 # ==============================================================================
 
- 
+#  - All fixture table columns kept with their original names
+#  - raw_stats columns brought in; 'try_scored' from raw_stats renamed to avoid collision with 'tries_scored' in fixtures
+#  - raw_stats 'points' renamed to avoid collision with fixtures 'points_scored'
+
 merged = pd.read_sql("""
     SELECT f.year, 
         f.team,
@@ -81,12 +99,10 @@ merged = pd.read_sql("""
     ON f.year = r.year
     AND f.team = r.team
     ORDER BY f.year ASC, f.final_position ASC
-""",con)
-
-
+""",con) 
 
 # ==============================================================================
-# 4. Save
+# 4. Saving and storing the complete raw data
 # ==============================================================================
 merged.to_csv(DAT_RAW + "six_nations_RAW-DATA.csv", index=False)
  

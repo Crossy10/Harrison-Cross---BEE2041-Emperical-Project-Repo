@@ -1,16 +1,13 @@
 """
-six_nations_scraper.py          Harrison Cross          22-04-2026
+six_nations_scraper.py                                           Harrison Cross
 ---|----1----|----2----|----3----|----4----|----5----|----6----|----7----|----8
 
 Scrapes team-level stats from the Six Nations website for every tournament
 year from 2000 to 2026, then reshapes the data into a clean wide-format CSV.
 
-The site is JavaScript-rendered, so we use Playwright 
+The site is JavaScript-rendered, so we use Playwright to load the pages and extract the data.
 
-The data has been provided in replication materials in dta format, and hence is read in directly with pd.read_stata().  In order to replicate this file, the only required change is the ROOT directory, indicated on line 29.
-
-This file uses Causal forests, as well as standard regression analysis. For details on the underlying causal forest implementation, please refer to:
-https://econml.azurewebsites.net/spec/estimation/forest.html
+This code was partial written, adjusted and refined with the help of Claude AI. 
 
 Full details related to the replication of this file can be found in the README code in the top level of this directory.
 """
@@ -20,7 +17,7 @@ Full details related to the replication of this file can be found in the README 
 # ==============================================================================
 
 import pandas as pd
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright # set up Playwright to scrape
 from collections import defaultdict
 
 
@@ -53,26 +50,25 @@ years = range(2000, 2027)
 rows = []
 
 with sync_playwright() as p:
-    # Launch a headless Chromium browser — no visible window opens.
     browser = p.chromium.launch(headless=True)
     page = browser.new_page()
 
     for year in years:
         print(f"Scraping {year}...")
 
-        url = f"https://www.sixnationsrugby.com/en/m6n/stats/{year}00?tab=teams"
+        url = f"https://www.sixnationsrugby.com/en/m6n/stats/{year}00?tab=teams" # URL for the stats page for a given year
         page.goto(url)
 
-        # Waiting for 6 seconds to allow content to load and to finish rendering the stat cards.
+        # Waiting for 6 seconds to allow content to load and to finish rendering the stat cards. This is also so we repliate human behaviour and avoid sending too many rapid-fire requests to the server which could be flagged as bot activity.
         page.wait_for_timeout(6000)
 
         # Each metric (e.g. "Points Scored", "Tries") lives inside its own card div that contains an <h2>/<h3> title and a <table>.
         cards = page.query_selector_all("div")
 
-        for card in cards:
+        for card in cards: # loop through each card/mini table on the webpage and attempt to extract a stat from it
             try:
-                title_el = card.query_selector("h2, h3")
-                table = card.query_selector("table")
+                title_el = card.query_selector("h2, h3") # the metric name is in an h2 or h3 element inside the card
+                table = card.query_selector("table") # the actual stats are in a table element inside the card
 
                 # Skip any div that isn't a proper stat card.
                 if not title_el or not table:
@@ -82,8 +78,8 @@ with sync_playwright() as p:
                 # e.g. "Points Scored" → "points_scored".
                 metric = title_el.inner_text().strip().lower().replace(" ", "_")
 
-                for tr in table.query_selector_all("tr"):
-                    cols = tr.query_selector_all("td")
+                for tr in table.query_selector_all("tr"): # loop through each row of the table
+                    cols = tr.query_selector_all("td") # get the data cells in the row
 
                     # Each data row needs at least a team cell and a value cell.
                     if len(cols) < 2:
@@ -114,7 +110,7 @@ with sync_playwright() as p:
                         "metric": metric,
                         "team":   team,
                         "value":  value,
-                    })
+                    }) # append the stat to our list as a dictionary with keys "year", "metric", "team", "value"
 
             except Exception:
                 # Individual card failures (stale elements, missing nodes, etc.)are common on a JS site — skip silently and move on.
@@ -168,8 +164,6 @@ with sync_playwright() as p:
 
                 text_vals_2026_scrape = [c.inner_text().strip() for c in cols_2026_scrape]
 
-                # Rather than assuming a fixed column order, we scan every cell in the row: if it's a team name we store it, if it looks like a number we store that. 
-                # This handles tables where the columns aren't always in the same position.
                 team_2026_scrape  = None
                 value_2026_scrape = None
 
@@ -191,7 +185,6 @@ with sync_playwright() as p:
                 data_2026[team_2026_scrape][stat_name] = value_2026_scrape
 
         except Exception:
-            # Individual card failures (stale elements, missing nodes, etc.) are common on a JS site — skip silently and move on.
             continue
 
     browser.close()
@@ -200,7 +193,7 @@ with sync_playwright() as p:
 pure_2026_df = pd.DataFrame.from_dict(data_2026, orient="index")
 pure_2026_df.reset_index(inplace=True)
 
-# Drop columns that are junk metrics or team-name columns the site generated as spurious headings.
+# Drop columns that are junk metrics or team-name columns the site generated as unnecessary headings.
 cols_to_drop = ["index"] + list(JUNK_METRICS)
 
 for col in cols_to_drop:
@@ -219,6 +212,7 @@ METRIC_columns = ["year", "team"] + ordered_STATS_cols
 
 print("\n\n\nChecking if the columns in the desired order\n")
 print(METRIC_columns) # checking we have successfully collected the columns in the desired order
+
 
 
 # ==============================================================================
