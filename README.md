@@ -179,8 +179,10 @@ This will populate `results/figures/` and `results/tables/` with all output file
 
 **2. 
 
-**3. Open the website**
-Open the website
+**3. Open the website**  
+Open the website [here](https://crossy10.github.io/Harrison-Cross---BEE2041-Emperical-Project-Repo/) 
+GitHub Pages
+
 
 ---
 
