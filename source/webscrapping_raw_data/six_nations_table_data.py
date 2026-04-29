@@ -9,6 +9,10 @@ https://www.sixnationsrugby.com/en/m6n/fixtures/202600/table
 
 At times where the table was unclear, I used the corresponding results table from https://www.rugbypass.com/six-nations/history/ 
 
+
+This code was partial written, adjusted and refined with the help of Claude AI. 
+
+
 This code will create the basic raw data and save into the data folder. 
 
 Full details related to the replication of this file can be found in the README code in the top level of this directory.

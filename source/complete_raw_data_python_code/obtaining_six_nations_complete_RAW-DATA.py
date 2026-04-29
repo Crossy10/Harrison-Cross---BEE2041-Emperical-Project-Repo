@@ -6,6 +6,9 @@ This file creates the complete raw data that will be used for the rest of the pr
 
 This code will use SQL and merge the basic raw data and the webscrapped stats data and save into the raw data folder. 
 
+This code was partial written, adjusted and refined with the help of Claude AI. 
+
+
 Full details related to the replication of this file can be found in the README code in the top level of this directory.
 The complete raw data can, however, simply be obtained from the GitHub repo - this code is only for the creation.
 """
