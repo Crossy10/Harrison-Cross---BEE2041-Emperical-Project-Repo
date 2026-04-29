@@ -131,11 +131,6 @@ print(long_df.head())    # checking the first 5 rows to see if it's as wanted
 long_df.to_csv(DAT_RAW + "LONG_FORMAT-six_nations_RAWstats.csv", index=False)
 
 
-
-
-
-
-
 # ==============================================================================
 # 2. Re-scrape 2026 in isolation to establish the column order used on the webiste
 # ==============================================================================
