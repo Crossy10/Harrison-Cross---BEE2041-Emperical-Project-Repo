@@ -12,3 +12,5 @@ execute:
 This blog is where the start of the wesbite will go
 
 ---
+
+## Word Count: 57

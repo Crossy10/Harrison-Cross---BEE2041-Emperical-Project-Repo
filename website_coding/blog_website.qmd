@@ -19,3 +19,5 @@ This is a numbered list
 1. first
 2. second
 3. third
+
+Word Count: 48
