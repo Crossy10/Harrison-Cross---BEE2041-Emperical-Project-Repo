@@ -21,13 +21,13 @@
 
 ## Overview
 This project involves statistical analysis, using data from:
-- > Six Nations Rugby (2026) *Statistics*, (https://www.sixnationsrugby.com/en/m6n/stats)
+> Six Nations Rugby (2026) *Statistics*, (https://www.sixnationsrugby.com/en/m6n/stats)
 
-- > Six Nations Rugby (2026) *Fixtures and Results*, (https://www.sixnationsrugby.com/en/m6n/fixtures)
+> Six Nations Rugby (2026) *Fixtures and Results*, (https://www.sixnationsrugby.com/en/m6n/fixtures)
+
 
 
 This project aims to investigate the key factors that determine success in the Six Nations Rugby Championship.
-
 Thus, the central reseach question is: 
 **What factors most strongly predict the match outcomes in rugby?**
 
@@ -68,20 +68,20 @@ Emperical project/
 ├── README.md
 ├── Makefile
 ├── website
-├── refs.bib                                # Bibliography
+├── refs.bib                                                # Bibliography
 │
 ├── data/
-│    ├── raw_data/                          # Raw data in CSV format
+│    ├── raw_data/                                         # Raw data in CSV format
 │    │  ├── raw_dataLONG_FORMAT-six_nations_RAWstats.csv 
 │    │  ├── raw_dataWIDE_FORMAT-six_nations_RAWstats_.csv 
 │    │  ├── six_nations_fixtures_table_scraped.csv 
 │    │  └── six_nations_RAW-DATA.csv 
 │    │ 
-│    └── clean_data/                         # Clean data in CSV format
+│    └── clean_data/                                       # Clean data in CSV format
 │      └── six_nations_RAW-DATA.csv 
 │
 ├── source/
-│    └── data_analysis.py             # python coding script
+│    └── data_analysis.py                                  # python coding script
 │
 ├── results/
 │    ├── figures/
@@ -90,11 +90,11 @@ Emperical project/
 │
 ├── website_coding/
 │    ├── _quarto.yml
-|    ├── about.qmd               # About page for my website 
-|    ├── blog_website.qmd           # Info page for my website
-|    ├── conclusion.qm        # Conclusion page for my website
-|    ├── index.qmd                  # Home page for my website
-|    ├── results.qmd             # Results page for my website
+|    ├── about.qmd                                         # About page for my website 
+|    ├── blog_website.qmd                                  # Info page for my website
+|    ├── conclusion.qm                                     # Conclusion page for my website
+|    ├── index.qmd                                         # Home page for my website
+|    ├── results.qmd                                       # Results page for my website
 │    └── styles.css
 |
 ├── .github/workflows/
@@ -213,6 +213,6 @@ To create my website, I used Quarto pages and generated a yml and used css to st
 ## References and Resources
 
 **Data:** 
-- > Six Nations Rugby (2026) *Statistics*, (https://www.sixnationsrugby.com/en/m6n/stats)
+> Six Nations Rugby (2026) *Statistics*, (https://www.sixnationsrugby.com/en/m6n/stats)
 
-- > Six Nations Rugby (2026) *Fixtures and Results*, (https://www.sixnationsrugby.com/en/m6n/fixtures)
+> Six Nations Rugby (2026) *Fixtures and Results*, (https://www.sixnationsrugby.com/en/m6n/fixtures)
