@@ -67,7 +67,7 @@ The key variables used in this analysis are:
 Emperical project/
 ├── README.md
 ├── Makefile
-├── website
+├── Harrison Cross - Emperical Project Website.html         # Project Website html file
 ├── refs.bib                                                # Bibliography
 │
 ├── data/
