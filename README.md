@@ -38,9 +38,10 @@ This is done in two complementary approaches:
 
 I have used 2 datasets from the Six Nations website, done by webscrapping the results tables and the team statistics tab, and then combined them together using SQL. These datasets involve match statistics such as tries, carry meters and tackles.
 
-The projected is presented in a GitHub Pages website, generated using Quarto,  
-An easy to view version is checked in and available via GitHub pages.
+The projected is presented in a GitHub Pages website, generated using Quarto, which can be accessed[here:](https://crossy10.github.io/Harrison-Cross---BEE2041-Emperical-Project-Repo/) 
 
+or follow the link: (https://crossy10.github.io/Harrison-Cross---BEE2041-Emperical-Project-Repo/)
+ 
 ---
 
 ## Data
