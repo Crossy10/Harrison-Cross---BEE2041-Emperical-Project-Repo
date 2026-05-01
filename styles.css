@@ -2,12 +2,14 @@ h1{
   font-size: 3rem;
   color: #1f2f52;
   text-align: center;
+  font-style: underline;
 }
 
 h2 {
   font-size: 2rem;
   color: #1f2f52;
   text-align: left;
+  font-style: underline;
 }
 
 body {
