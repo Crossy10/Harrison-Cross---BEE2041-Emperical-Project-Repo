@@ -1,7 +1,13 @@
-h1, h2 {
+h1{
   font-size: 3rem;
-  color: #2c3e50;
+  color: #315981;
   text-align: center;
+}
+
+h2 {
+  font-size: 2rem;
+  color: #315981;
+  text-align: left;
 }
 
 body {
