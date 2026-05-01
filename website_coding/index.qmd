@@ -6,13 +6,13 @@ format: html
 execute:
   echo: false
 ---
-University of Exeter | BEE2041__Data_Science_in_Economics__ | Empirical Project
-
-**Page Word Count**: 390  
+University of Exeter | BEE2041__Data_Science_in_Economics__ | Empirical Project  
+  
+**Page Word Count**: 464
 
 ---
-
-
+  
+  
 ## Introduction
 The Six Nations Championship is widely regarded as the top European international rugby competition, and since Italy’s inclusion in 2000, there have been only 4 winners: England, France, Ireland, and Wales. 
 Going into the 2026 season, Scotland arguably had their best chance of winning, boasting a strong and experienced squad. Nonetheless, they were still bested by Ireland and Italy, finishing 3rd in the table, leaving France to win yet another championship.
