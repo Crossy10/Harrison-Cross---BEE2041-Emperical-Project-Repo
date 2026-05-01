@@ -2,14 +2,14 @@ h1{
   font-size: 3rem;
   color: #1f2f52;
   text-align: center;
-  font-style: underline;
+  text-decoration: underline;
 }
 
 h2 {
   font-size: 2rem;
   color: #1f2f52;
   text-align: left;
-  font-style: underline;
+  text-decoration: underline;
 }
 
 body {
@@ -23,6 +23,7 @@ body {
 a {
   color: #2563eb;
   text-decoration: none;
+  text-decoration: underline;
 }
 
 a:hover {
