@@ -21,4 +21,4 @@ format:
     theme: cosmo
     css: styles.css
     toc: true
-    title-block-banner: false
+    anchor-sections: false
