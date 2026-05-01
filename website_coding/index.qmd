@@ -21,5 +21,9 @@ Kicking is becoming an ever-increasing feature from the highest-ranked teams, de
 In this analysis, I will address the question of what drives success in international rugby, focusing on the Six Nations, using match statistics to identify the key factors that contribute to winning tournaments and becoming more competitive
 
 ---
+## Methodology
+
+## Results
+[View Results →](results.html)
 
 **Word Count**: 361
