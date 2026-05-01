@@ -50,7 +50,7 @@ six_nations_df["missed_tackle_rate"] = six_nations_df["missed_tackle"]/(six_nati
 # Attacking efficiency index: defenders beaten per carry
 six_nations_df["attack_efficiency"] = six_nations_df["defender_beaten"] / six_nations_df["carries"]
 
-pd.save_csv(six_nations_df, DATA + 'six_nations_CLEAN-DATA.csv', index=False)
+six_nations_df.to_csv(DATA + 'six_nations_CLEAN-DATA.csv', index=False)
 
 #historical table points trend figure 
 frames = six_nations_df["year"].unique()# get unique years for animation frames
