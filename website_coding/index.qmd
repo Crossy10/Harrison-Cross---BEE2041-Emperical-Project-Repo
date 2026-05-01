@@ -7,10 +7,19 @@ execute:
   echo: false
 ---
 
-### Introduction
+## Introduction
+The Six Nations Championship is widely regarded as the top European international rugby competition, and since Italy’s inclusion in 2000, there have been only 4 winners: England, France, Ireland, and Wales. 
+Going into the 2026 season, Scotland arguably had their best chance of winning, boasting a strong and experienced squad. Nonetheless, they were still bested by Ireland and Italy, finishing 3rd in the table, leaving France to win yet another championship.
 
-This blog is where the start of the wesbite will go
+This pattern of dominance is not unique to the Six Nations. This pattern is evident even at the highest level of international rugby, where the Rugby World Cups have been overwhelmingly dominated by the Southern Hemisphere sides, with 9 out of the 10 tournaments won by  New Zealand, South Africa and Australia. 
+
+With the repeated winners of both the Six Nations and the Rugby World Cup being so heavily prevalent, I, alongside many other Rugby fans, question how these teams are able to consistently achieve success and thus dominate the competition. 
+Whilst some may argue that the Six Nations is becoming more competitive, with Italy’s recent improvement from 2022, as well as the Six Nations 2026 title being decided by the last kick in the last game of the tournament. It is still the same teams that continue to dominate, evidenced by the aforementioned kick deciding whether Ireland or France would be champions. 
+
+Kicking is becoming an ever-increasing feature from the highest-ranked teams, despite being a constantly debated aspect of modern rugby. Is it this metric that gives successful teams the ability to dominate so heavily, alongside making the unsuccessful teams become more competitive, or is there some other performance metric that is more important in driving success?
+
+In this analysis, I will address the question of what drives success in international rugby, focusing on the Six Nations, using match statistics to identify the key factors that contribute to winning tournaments and becoming more competitive
 
 ---
 
-### Word Count: 57
+**Word Count**: 361
