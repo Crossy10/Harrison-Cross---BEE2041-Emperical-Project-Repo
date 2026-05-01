@@ -1,17 +1,17 @@
 ---
 title: "What drives success in Rugby Tournaments?"
 subtitle: "A data-driven analysis of the Six Nations Championship and the key factors in determining which are the most important for winning Europe's most prestigious International Rugby Tournament"
-author: Harrison Cross                                                                     
+author: Harrison Cross
 format: html
 execute:
   echo: false
-
 ---
 University of Exeter | BEE2041__Data_Science_in_Economics__ | Empirical Project
 
-**Page Word Count**: 390
+**Page Word Count**: 390  
 
 ---
+
 
 ## Introduction
 The Six Nations Championship is widely regarded as the top European international rugby competition, and since Italy’s inclusion in 2000, there have been only 4 winners: England, France, Ireland, and Wales. 
@@ -26,7 +26,7 @@ Kicking is becoming an ever-increasing feature from the highest-ranked teams, de
 
 In this analysis, I will address the question of what drives success in international rugby, focusing on the Six Nations, using match statistics to identify the key factors that contribute to winning tournaments and becoming more competitive
 
----
+
 ## Data and Methodology
 For all the data and methodology information section, click the link below to view the Data and Methodology page, which contains all the relevant information about the data and how I will be analysing it.  
 [View Data and Methodology →](information_website.html)
