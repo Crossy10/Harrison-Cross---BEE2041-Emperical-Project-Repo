@@ -26,6 +26,10 @@ a {
   text-decoration: underline;
 }
 
+.anchorjs-link {
+  display: none;
+}
+
 a:hover {
   text-decoration: underline;
 }
@@ -39,7 +43,7 @@ a:hover {
   border-radius: 6px;
 }
 
-/* ===== Navbar (if using Quarto website) ===== */
+/* ===== Navbar ===== */
 .navbar {
   background-color: #192338;
 }
