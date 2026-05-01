@@ -7,10 +7,10 @@ execute:
   echo: false
 ---
 
-## Introduction
+### Introduction
 
 This blog is where the start of the wesbite will go
 
 ---
 
-## Word Count: 57
+### Word Count: 57
