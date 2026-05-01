@@ -1,9 +1,9 @@
 ---
 title: "What drives success in Rugby Tournaments?"
 subtitle: "A data-driven analysis of the Six Nations Championship and the key factors in determining which are the most important for winning Europe's most prestigious International Rugby Tournament"
-author: 
-  name: Harrison Cross
-  affiliation: University of Exeter | BEE2041_Data Science in Economics | Empirical Project
+author: |
+  Harrison Cross
+  University of Exeter | BEE2041__Data_Science_in_Economics__ | Empirical Project
 format: html
 execute:
   echo: false
@@ -29,8 +29,8 @@ In this analysis, I will address the question of what drives success in internat
 ## Analysis
 
 ## Results, Conclusion and References
-[View Results →](results.html)
-[View Conclusion →](conclusion.html)
-[View References →](ref_and_res.html)
+[View Results →](results.html)  
+[View Conclusion →](conclusion.html)  
+[View References →](ref_and_res.html)  
 
 **Word Count**: 390
