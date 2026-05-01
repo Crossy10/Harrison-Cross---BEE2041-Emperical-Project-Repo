@@ -7,14 +7,14 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: blog_website.qmd
-        text: Info
+      - href: information_website.qmd
+        text: Data and Methodology
       - href: results.qmd
         text: Results
       - href: conclusion.qmd
         text: Conclusion
-      - href: about.qmd
-        text: About
+      - href: ref_and_res.qmd
+        text: References and Resources
 
 format:
   html:

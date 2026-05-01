@@ -1,6 +1,6 @@
 ---
-title: "How to win the Six Nations"
-subtitle: "A breakdown of the key factors in determining which are the most important for winning Europe's mos prestigous International Rugby Tournament"
+title: "What drives success in Rugby Tournaments? A data-driven analysis of the Six Nations Championship"
+subtitle: "A breakdown of the key factors in determining which are the most important for winning Europe's most prestigious International Rugby Tournament"
 author: "Harrison Cross"
 format: html
 execute:
@@ -21,9 +21,14 @@ Kicking is becoming an ever-increasing feature from the highest-ranked teams, de
 In this analysis, I will address the question of what drives success in international rugby, focusing on the Six Nations, using match statistics to identify the key factors that contribute to winning tournaments and becoming more competitive
 
 ---
-## Methodology
+## Data and Methodology
+[View Data and Methodology →](information_website.html)
 
-## Results
+## Analysis
+
+## Results, Conclusion and References
 [View Results →](results.html)
+[View Conclusion →](conclusion.html)
+[View References →](ref_and_res.html)
 
-**Word Count**: 361
+**Word Count**: 384

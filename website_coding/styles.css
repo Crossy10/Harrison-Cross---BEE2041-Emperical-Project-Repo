@@ -1,12 +1,12 @@
 h1{
   font-size: 3rem;
-  color: #315981;
+  color: #1f2f52;
   text-align: center;
 }
 
 h2 {
   font-size: 2rem;
-  color: #315981;
+  color: #1f2f52;
   text-align: left;
 }
 
@@ -38,7 +38,7 @@ a:hover {
 
 /* ===== Navbar (if using Quarto website) ===== */
 .navbar {
-  background-color: #111827;
+  background-color: #1f2f52;
 }
 
 .navbar a {
