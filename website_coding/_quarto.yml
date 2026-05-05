@@ -16,8 +16,8 @@ website:
       - href: ref_and_res.qmd
         text: References and Resources
 
-resources: 
-- ../resources/figures/
+resources:
+- ../results/figures/
 
 format:
   html:
