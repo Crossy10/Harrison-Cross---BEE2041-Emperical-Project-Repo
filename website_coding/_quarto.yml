@@ -16,9 +16,6 @@ website:
       - href: ref_and_res.qmd
         text: References and Resources
 
-resources:
-- ../results/figures/
-
 format:
   html:
     theme: cosmo

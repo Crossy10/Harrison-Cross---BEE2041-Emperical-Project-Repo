@@ -2,6 +2,4 @@
 title: "References and Resources"
 ---
 
-# References and Resources
-
 This is the references and resources page.
