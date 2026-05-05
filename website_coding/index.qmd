@@ -30,6 +30,10 @@ For all the data and methodology information section, click the link below to vi
 [View Data and Methodology →](information_website.html)
 
 ## Analysis
+The graph below shows the historical trends in the finishing position of each team in the Six Nations from 2000 to 2026, with vertical dashed lines indicating significant changes in the tournament, such as the introduction of a new points scoring system in 2017 and the beginning of advanced stats recording in 2020.
+
+![](../results/figures/six_nations.gif)
+
 
 ## Results, Conclusion and References
 For the results, conclusion and references sections, click the links below to view the respective pages, which contain all the relevant information about the results of the analysis, the conclusions drawn from it and the references and resources used in this project.  
