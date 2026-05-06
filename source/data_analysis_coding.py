@@ -31,6 +31,7 @@ from pystout import pystout # for creating regression tables in LaTeX format
 import subprocess
 from pdf2image import convert_from_path
 from PIL import Image, ImageChops
+from statsmodels.miscmodels.ordinal_model import OrderedModel
 
 from statsmodels.stats.outliers_influence import variance_inflation_factor
 from statsmodels.iolib.table import SimpleTable
@@ -39,6 +40,8 @@ from statsmodels.regression.linear_model import OLS
 from statsmodels.tools import add_constant
 from statsmodels.iolib.summary2 import summary_col
 
+
+import scipy.stats as stats
 
 tex_path = TAB + 'regressionTable.tex'
 wrapped_path = TAB + 'regressionTable_wrapped.tex'
@@ -75,30 +78,40 @@ def explore_dataframe(df):
 explore_dataframe(six_nations_df) # calling the function to explore the shape and structure of the DataFrame, providing insights into the number of rows, columns, unique teams, and years represented in the dataset.
 
 # ─────────────────────────────Adding new features─────────────────────────────
-#Try efficiency: average tries scored per game (higher = better attack) 
-six_nations_df["average_tries_per_game"] = six_nations_df["tries_scored"] / six_nations_df["matches_played"]
-
-# Try efficiency: average tries conceded per game (lower = better defence)
-six_nations_df["average_tries_conceded_per_game"] = six_nations_df["tries_conceded"] / six_nations_df["matches_played"]
-
 # Win rate (cleaner than raw wins since matches_played is always 5)
 six_nations_df["win_rate"] = six_nations_df["matches_won"] / six_nations_df["matches_played"]
 
-# points per game ()
-six_nations_df["average_points_per_game"] = six_nations_df["points_scored"] / six_nations_df["matches_played"]
+#Try efficiency: average tries scored per game (higher = better attack) 
+six_nations_df["try_efficiency"] = six_nations_df["tries_scored"] / six_nations_df["matches_played"]
 
-# Missed tackle rate as a fraction of total tackle attempts (lower = better defence)
-six_nations_df["missed_tackle_rate"] = six_nations_df["missed_tackle"]/(six_nations_df["total_successful_tackles"] + six_nations_df["missed_tackle"])
+# Try efficiency: average tries conceded per game (lower = better defence)
+six_nations_df["try_conceded_efficiency"] = six_nations_df["tries_conceded"] / six_nations_df["matches_played"]
 
-# Average missed tackle rate per game (lower = better defence)
-six_nations_df["average_missed_tackle_rate_per_game"] = six_nations_df["missed_tackle_rate"]/(six_nations_df["matches_played"])
-
+# points difference per game ()
+six_nations_df["point_difference_efficiency"] = six_nations_df["points_difference"] / six_nations_df["matches_played"]
 
 # Attacking efficiency index: defenders beaten per carry
 six_nations_df["attack_efficiency"] = six_nations_df["defender_beaten"] / six_nations_df["carries"]
 
-six_nations_df_all_stats_copy = six_nations_df.copy() # creating a copy of the dataframe after adding new features, allowing us to compare the data with the new features to the previous version of the data without the new features if needed.
+# Average offload per game
+six_nations_df["avg_offload_per_game"] = six_nations_df["offload"] / six_nations_df["matches_played"]
 
+# Average lineout steals per game
+six_nations_df["avg_lineout_steals_per_game"] = six_nations_df["lineout_steals"] / six_nations_df["matches_played"]
+
+# Average kicks in play per game
+six_nations_df["avg_kicks_in_play"] = six_nations_df["kicks_in_play"] / six_nations_df["matches_played"]
+
+# Average kicks meters per game
+six_nations_df["avg_kick_meters_per_game"] = six_nations_df["kick_metres"] / six_nations_df["matches_played"]
+
+# Average Dominant tackle contact per game
+six_nations_df["avg_dominant_tackle_contact_per_game"] = six_nations_df["dominant_tackle_contact"] / six_nations_df["matches_played"]
+
+# Average kicks meters per game
+six_nations_df["avg_turnovers_won_per_game"] = six_nations_df["total_turnovers_won"] / six_nations_df["matches_played"]
+
+six_nations_df_all_stats_copy = six_nations_df.copy() # creating a copy of the dataframe after adding new features, allowing us to compare the data with the new features to the previous version of the data without the new features if needed.
 # ────────────────────────────Storing cleaned data─────────────────────────────
 six_nations_df_all_stats_copy.to_csv(DATA + 'six_nations_full_columns_CLEAN-DATA.csv', index=False)
 
@@ -196,17 +209,27 @@ plot_historical_positions(six_nations_df) # calling the function to create and d
 
 
 #------------------------------------------------------------------------------
-#--- (2) OLS Regression to explore which features are important in winning the Six Nations and achieving a higher final position 
+#--- (2) Logit Regression to explore which features are important in winning the Six Nations and achieving a higher final position 
 #------------------------------------------------------------------------------
 
 
 six_nations_regression_df = six_nations_df.copy() # creating a copy of the cleaned dataframe to use for regression analysis
 
+regression_columns = ['win_rate', 'try_efficiency','try_conceded_efficiency',
+                      'point_difference_efficiency','attack_efficiency ', 
+                      'avg_offload_per_game', 'goal_kick_success_percent',
+                      'tackle_success_percent', 'lineout_success_percent',
+                      'avg_lineout_steals_per_game', 'metres_per_carry', 
+                      'post_contact_metres_per_carry','avg_kicks_in_play',
+                      'avg_kick_metres_per_game', 
+                      'avg_dominant_tackle_contact_per_game', 
+                      'avg_turnovers_won_per_game']
+
+
 y_var = "final_position"
 
 # X variables
-x_vars = [col for col in six_nations_df.columns 
-          if col not in ["year", "team", "final_position", "grand_slam", "table_points", "Eras"]]
+x_vars = [col for col in six_nations_df.columns if col in regression_columns]
 
 # Convert everything to numeric for regression, coercing errors to NaN (which we will drop later)
 six_nations_regression_df[x_vars] = six_nations_regression_df[x_vars].apply(pd.to_numeric, errors="coerce")
@@ -219,67 +242,56 @@ six_nations_regression_df = six_nations_regression_df.replace([np.inf, -np.inf],
 y_var_clean = six_nations_regression_df[y_var]
 x_vars_clean = six_nations_regression_df[x_vars]
 
-# OLS model
-model_ols = OLS(y_var_clean, add_constant(x_vars_clean)).fit()
+# Logit regression with ordered dependent variable (final position 1-6) because we have a non-linear relationship and the dependent variable is ordinal (lower final position = better performance)
+model_ordered = OrderedModel(y_var_clean, x_vars_clean,distr='logit').fit(method='bfgs', disp=False) 
 
-print(model_ols.summary()) # printing the summary of the OLS regression results to assess whether the OLS regression worked
+n_vars = len(x_vars)
+ 
+
+print(model_ordered.summary()) 
+
+
+llf       = model_ordered.llf
+llnull    = model_ordered.llnull
+pseudo_r2 = 1 - (llf / llnull)
+lr_stat   = -2 * (llnull - llf)
+lr_df     = len(x_vars)
+lr_pval   = stats.chi2.sf(lr_stat, lr_df)
 
 
 #----------------------------------------------------------------------
-# creating a regression table using the pystout library, which formats the results of the OLS regression into a LaTeX table. The table will include the coefficients, standard errors, significance levels, and other relevant statistics for each variable in the regression model all to 2 decimal places. 
+# creating a regression table using the pystout library, which formats the results of the logit regression into a LaTeX table. The table will include the coefficients, standard errors, significance levels, and other relevant statistics for each variable in the regression model all to 2 decimal places. 
 # Then taking the .tex file generated by pystout, wraps it in a full LaTeX document, compiles it to PDF, and then converts the PDF to a PNG image. This allows us to easily include the regression table as an image in our website. then deleting the intermediate files generated during the process to keep the directory clean.
-pystout(models= [model_ols],
+pystout(models= [model_ordered],
         file=TAB+'regressionTable.tex',
-        addnotes=['All dependent variables are call back rates in percent.',
-                  'Standard errors are presented in parentheses. *: p<0.10; **:p<0.05; ***:p<0.01.'],
-        digits=2, 
+        addnotes=[
+            'Dependent variable is final tournament position (1 = best, 6 = worst).', 
+            'Ordered Logit (proportional odds model). Threshold parameters not reported.',
+            'Negative coefficient = associated with a better (lower-numbered) finish.',
+            'Standard errors in parentheses. *: p<0.10; **: p<0.05; ***: p<0.01'
+            ],    
+        digits=3, 
         endog_names=["Final Position"], 
         varlabels={'const':'Constant',
-                   'matches_won':'Matches Won',
-                   'matches_drawn':'Matches Drawn',
-                   'matches_lost':'Matches Lost',
-                   'points_scored':'Points Scored',
-                   'points_conceded':'Points Conceded',
-                   'points_difference':'Points Difference',
-                   'tries_scored':'Tries Scored',
-                   'tries_conceded':'Tries Conceded',
-                   'bonus_points':'Bonus Points',
-                   'carries':'Carries',
-                   'offload':'Offload',
-                   'defender_beaten':'Defender Beaten',
-                   'missed_tackle':'Missed Tackle',
-                   'lineout_steals':'Lineout Steals',
-                   'lineout_throws_won':'Lineout Throws Won',
-                   'kicks_in_play':'Kicks In Play',
-                   'kick_metres':'Kick Metres',
-                   'dominant_contact':'Dominant Contact',
-                   'dominant_tackle_contact':'Dominant Tackle Contact',
-                   'total_successful_tackles':'Total Successful Tackles',
-                   'box_kicks':'Box Kicks',
-                   'total_turnovers_won':'Total Turnovers Won',
-                   'successful_goals':'Successful Goals',
-                   'carry_metres_made':'Carry Metres Made',
-                   'post_contact_metres':'Post Contact Metres',
-                   'initial_break':'Initial Break',
+                   'win_rate':'Winning Percentage',
+                   'try_efficiency':'Average Tries Scored Per Game',
+                   'try_conceded_efficiency':'Average Tries Conceded Per Game',
+                   'point_difference_efficiency':'Average Points Difference Per Game ',
+                   'attack_efficiency ':'Average Defenders Beaten per carry',
+                   'avg_offload_per_game':'Average Offload per Game',
                    'goal_kick_success_percent':'Goal Kick Success Percent',
                    'tackle_success_percent':'Tackle Success Percent',
                    'lineout_success_percent':'Lineout Success Percent',
-                   'metres_per_carry':'Metres Per Carry',
-                   'post_contact_metres_per_carry':'Post Contact Metres Per Carry',
-                   'total_jackals':'Total Jackals',
-                   'kick_metres_per_kick':'Kick Metres Per Kick',
-                   'average_tries_per_game':'Average Tries Per Game',
-                   'average_tries_conceded_per_game':'Average Tries Conceded Per Game',
-                   'win_rate':'Win Rate',
-                   'average_points_per_game ':'Average Points Per Game ',
-                   'missed_tackle_rate ':'Missed Tackle Rate ',
-                  'average_missed_tackle_rate_per_game ':'Average Missed Tackle Rate Per Game ',
-                  'attack_efficiency ':'Attack Efficiency '
-                    },
+                   'avg_lineout_steals_per_game':'Average Lineout Steals per Game',
+                   'metres_per_carry':'Average Metres Per Carry per game',
+                   'post_contact_metres_per_carry':'Average Post Contact Metres Per Carry per game',
+                   'avg_kicks_in_play':'Average Kicks In Play per Game',
+                   'avg_kick_metres_per_game':'Average Kick Metres per Game',
+                   'avg_dominant_tackle_contact_per_game':'Average Dominant Tackle Contact per Game',
+                   'avg_turnovers_won_per_game':'Average Turnovers Won per Game'},
         mgroups={'Baseline':1}, 
-        modstat={'nobs':'Obs','rsquared_adj ':'Adj. R\sym{2}','fvalue ':'F-stat'},
-        stars =  {.1:'*',.05:'**',.01:'***'}
-        )
+        modstat={'nobs':'Obs'},
+        stars =  {.1:'*',.05:'**',.01:'***'})
 
 # Read the pystout-generated .tex fragment
 with open(tex_path, 'r') as f:
@@ -345,6 +357,8 @@ for i, image in enumerate(images):
 for ext in ['*.aux', '*.log', '*.pdf', '*.tex']:
     for f in glob.glob(TAB + ext):
         os.remove(f)
+
+
 
 #------------------------------------------------------------------------------
 #--- (3) Estimate causal forest
