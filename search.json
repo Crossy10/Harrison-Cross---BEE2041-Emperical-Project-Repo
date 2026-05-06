@@ -25,7 +25,7 @@
     "href": "index.html#analysis",
     "title": "What drives success in Rugby Tournaments?",
     "section": "Analysis",
-    "text": "Analysis\nThe graph below shows the historical trends in the finishing position of each team in the Six Nations from 2000 to 2026, with vertical dashed lines indicating significant changes in the tournament, such as the introduction of a new points scoring system in 2017 and the beginning of advanced stats recording in 2020.\n\n\n\n\n\nThe table below shows the results of the regression analysis, which identifies the key performance metrics that are most strongly associated with success in the Six Nations. The table includes the coefficients and significance levels for each metric, allowing us to determine which factors are most important in driving success in international rugby.\n![] (https://raw.githubusercontent.com/Crossy10/Harrison-Cross—BEE2041-Emperical-Project-Repo/main/results/tables/regressionTable_page_1.png){width=80% fig-align=“center”}"
+    "text": "Analysis\nThe graph below shows the historical trends in the finishing position of each team in the Six Nations from 2000 to 2026, with vertical dashed lines indicating significant changes in the tournament, such as the introduction of a new points scoring system in 2017 and the beginning of advanced stats recording in 2020.\n\n\n\n\n\nThe table below shows the results of the regression analysis, which identifies the key performance metrics that are most strongly associated with success in the Six Nations. The table includes the coefficients and significance levels for each metric, allowing us to determine which factors are most important in driving success in international rugby."
   },
   {
     "objectID": "index.html#results-conclusion-and-references",
