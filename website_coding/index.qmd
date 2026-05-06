@@ -28,7 +28,7 @@ In this analysis, I will address the question of what drives success in internat
 ## Data, Methodology and Results
 For all the data, methodology and results information sections, click the links below to view the respective pages, which contains all the relevant information about the data and how I will be analysing it and the results of said analysis.
 
-[View Data and Methodology →](information_website.html)
+[View Data and Methodology →](information_website.html)  
 [View Results →](results.html)  
 
 ## Analysis
