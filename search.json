@@ -14,57 +14,43 @@
     "text": "Introduction\nThe Six Nations Championship is widely regarded as the top European international rugby competition, and since Italy’s inclusion in 2000, there have been only 4 winners: England, France, Ireland, and Wales. Going into the 2026 season, Scotland arguably had their best chance of winning, boasting a strong and experienced squad. Nonetheless, they were still bested by Ireland and Italy, finishing 3rd in the table, leaving France to win yet another championship.\nThis pattern of dominance is not unique to the Six Nations. This pattern is evident even at the highest level of international rugby, where the Rugby World Cups have been overwhelmingly dominated by the Southern Hemisphere sides, with 9 out of the 10 tournaments won by New Zealand, South Africa and Australia.\nWith the repeated winners of both the Six Nations and the Rugby World Cup being so heavily prevalent, I, alongside many other Rugby fans, question how these teams are able to consistently achieve success and thus dominate the competition. Whilst some may argue that the Six Nations is becoming more competitive, with Italy’s recent improvement from 2022, as well as the Six Nations 2026 title being decided by the last kick in the last game of the tournament. It is still the same teams that continue to dominate, evidenced by the aforementioned kick deciding whether Ireland or France would be champions.\nKicking is becoming an ever-increasing feature from the highest-ranked teams, despite being a constantly debated aspect of modern rugby. Is it this metric that gives successful teams the ability to dominate so heavily, alongside making the unsuccessful teams become more competitive, or is there some other performance metric that is more important in driving success?\nIn this analysis, I will address the question of what drives success in international rugby, focusing on the Six Nations, using match statistics to identify the key factors that contribute to winning tournaments and becoming more competitive"
   },
   {
-    "objectID": "index.html#data-and-methodology",
-    "href": "index.html#data-and-methodology",
+    "objectID": "index.html#data-methodology-and-results",
+    "href": "index.html#data-methodology-and-results",
     "title": "What drives success in Rugby Tournaments?",
-    "section": "Data and Methodology",
-    "text": "Data and Methodology\nFor all the data and methodology information section, click the link below to view the Data and Methodology page, which contains all the relevant information about the data and how I will be analysing it.\nView Data and Methodology →"
+    "section": "Data, Methodology and Results",
+    "text": "Data, Methodology and Results\nFor all the data, methodology and results information sections, click the links below to view the respective pages, which contains all the relevant information about the data and how I will be analysing it and the results of said analysis.\nView Data and Methodology → View Results →"
   },
   {
     "objectID": "index.html#analysis",
     "href": "index.html#analysis",
     "title": "What drives success in Rugby Tournaments?",
     "section": "Analysis",
-    "text": "Analysis\nThe graph below shows the historical trends in the finishing position of each team in the Six Nations from 2000 to 2026, with vertical dashed lines indicating significant changes in the tournament, such as the introduction of a new points scoring system in 2017 and the beginning of advanced stats recording in 2020.\n\n\n\n\n\nThe table below shows the results of the regression analysis, which identifies the key performance metrics that are most strongly associated with success in the Six Nations. The table includes the coefficients and significance levels for each metric, allowing us to determine which factors are most important in driving success in international rugby. Each coefficient represents the change in the finishing position associated with a one-unit increase in the respective metric, holding all other variables constant. The significance levels indicate the statistical significance of each coefficient, with asterisks denoting different levels of significance (e.g., p &lt; 0.05, p &lt; 0.01, p &lt; 0.001). This means that the metrics with significant coefficients are those that have a statistically significant impact on the finishing position in the Six Nations, and thus can be considered key drivers of success in international rugby."
+    "text": "Analysis\nThe graph below shows the historical trends in the finishing position of each team in the Six Nations from 2000 to 2026, with vertical dashed lines indicating significant changes in the tournament, such as the introduction of a new points scoring system in 2017 and the beginning of advanced stats recording in 2020.\n\n\n\n\n\nThe table below shows the results of the regression analysis, which identifies the key performance metrics that are most strongly associated with success in the Six Nations. The table includes the coefficients and significance levels for each metric, allowing us to determine which factors are most important in driving success in international rugby. Each coefficient represents the change in the finishing position associated with a one-unit increase in the respective metric, holding all other variables constant. The significance levels indicate the statistical significance of each coefficient, with asterisks denoting different levels of significance (e.g., p &lt; 0.05, p &lt; 0.01, p &lt; 0.001). This means that the metrics with significant coefficients are those that have a statistically significant impact on the finishing position in the Six Nations, and thus can be considered key drivers of success in international rugby.\n\n\n\n\n\nInsightfulness: is the analysis insightful and compelling? Are there some interesting, thought-provoking, and/or surprising findings? 4 • Soundness: Is the analysis sound? Are all comparisons fair (not comparing apples to oranges)? Was proper filtering done? Are plots used appropriately based on data types (e.g., using bar plots for categorical data points, scatter plots for independent data points, lines for time series)? • Presentation: Is the narrative coherent? does it all read as a one story? Is it easy to understand the post? Is it easy to follow the ideas and the main story? Are there appropriate (and readable) labels, legends, and captions provided for plots? • Visual appeal: are the plots visually appealing (well set-up, appropriate colours, non-trivial yet simple plots)?"
   },
   {
-    "objectID": "index.html#results-conclusion-and-references",
-    "href": "index.html#results-conclusion-and-references",
+    "objectID": "index.html#conclusion",
+    "href": "index.html#conclusion",
     "title": "What drives success in Rugby Tournaments?",
-    "section": "Results, Conclusion and References",
-    "text": "Results, Conclusion and References\nFor the results, conclusion and references sections, click the links below to view the respective pages, which contain all the relevant information about the results of the analysis, the conclusions drawn from it and the references and resources used in this project.\nView Results →\nView Conclusion →\nView References →"
+    "section": "Conclusion",
+    "text": "Conclusion\nIn conclusion, this analysis has identified the key performance metrics that are most strongly associated with success in the Six Nations Championship. By understanding these factors, teams can focus on improving their performance in these areas to increase their chances of winning the tournament and becoming more competitive. The insights gained from this analysis can also be applied to other international rugby competitions, such as the Rugby World Cup, to further understand what drives success in international rugby."
   },
   {
-    "objectID": "ref_and_res.html",
-    "href": "ref_and_res.html",
-    "title": "References and Resources",
-    "section": "",
-    "text": "This is the references and resources page."
+    "objectID": "index.html#references-and-resources",
+    "href": "index.html#references-and-resources",
+    "title": "What drives success in Rugby Tournaments?",
+    "section": "References and Resources",
+    "text": "References and Resources\nthis is the references and resources section, which contains all the relevant information about the references and resources used in this project."
   },
   {
-    "objectID": "conclusion.html",
-    "href": "conclusion.html",
-    "title": "conclusion",
-    "section": "",
-    "text": "This blog"
-  },
-  {
-    "objectID": "conclusion.html#introduction",
-    "href": "conclusion.html#introduction",
-    "title": "conclusion",
-    "section": "",
-    "text": "This blog"
-  },
-  {
-    "objectID": "information_website.html",
-    "href": "information_website.html",
+    "objectID": "data&method.html",
+    "href": "data&method.html",
     "title": "My Website",
     "section": "",
     "text": "My name is YOUR NAME.\nI study YOUR DEGREE.\n\n\nI am interested in …\n\n\n\nit’s all just markdown!\nThis is a numbered list\n\nfirst\nsecond\nthird\n\nWord Count: 48"
   },
   {
-    "objectID": "information_website.html#hello",
-    "href": "information_website.html#hello",
+    "objectID": "data&method.html#hello",
+    "href": "data&method.html#hello",
     "title": "My Website",
     "section": "",
     "text": "My name is YOUR NAME.\nI study YOUR DEGREE.\n\n\nI am interested in …\n\n\n\nit’s all just markdown!\nThis is a numbered list\n\nfirst\nsecond\nthird\n\nWord Count: 48"
