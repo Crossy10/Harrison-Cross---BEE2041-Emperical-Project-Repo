@@ -1,4 +1,4 @@
-# What drives success in Rugby Tournaments?: A Data-Driven Analysis of the Six Nations
+# What drives success in Rugby Tournaments: A Data-Driven Analysis of the Six Nations
 
 **Author:** Harrison Cross  
 **About:** Emperical Project for BEE2041 - Data Science in Economics  
