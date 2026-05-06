@@ -202,10 +202,8 @@ def plot_historical_positions(six_nations_df):
     # creating the animation using the FuncAnimation function from the matplotlib.animation. It takes in the figure, the animate function, the frames (years), the interval between frames (300 milliseconds), and whether to repeat the animation (True).
     
     ani.save(FIG + "six_nations.gif", writer="pillow", fps=2) # saving the animation as a GIF file in the specified figures directory, using the Pillow writer and setting the frames per second to 2 for a smooth animation.
-    plt.show()
 
 plot_historical_positions(six_nations_df) # calling the function to create and display the animated line plot of historical trends in final positions for each team in the Six Nations tournament.
-
 
 
 #------------------------------------------------------------------------------
