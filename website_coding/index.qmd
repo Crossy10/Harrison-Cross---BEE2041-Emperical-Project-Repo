@@ -30,11 +30,12 @@ For all the data and methodology information section, click the link below to vi
 [View Data and Methodology →](information_website.html)
 
 ## Analysis
-The graph below shows the historical trends in the finishing position of each team in the Six Nations from 2000 to 2026, with vertical dashed lines indicating significant changes in the tournament, such as the introduction of a new points scoring system in 2017 and the beginning of advanced stats recording in 2020.
+The graph below shows the historical trends in the finishing position of each team in the Six Nations from 2000 to 2026, with vertical dashed lines indicating significant changes in the tournament, such as the introduction of a new points scoring system in 2017 and the beginning of advanced stats recording in 2020.  
 
 ![](https://raw.githubusercontent.com/Crossy10/Harrison-Cross---BEE2041-Emperical-Project-Repo/main/results/figures/six_nations.gif){width=80% fig-align="center"}
 
-The table below shows the results of the regression analysis, which identifies the key performance metrics that are most strongly associated with success in the Six Nations. The table includes the coefficients and significance levels for each metric, allowing us to determine which factors are most important in driving success in international rugby.
+The table below shows the results of the regression analysis, which identifies the key performance metrics that are most strongly associated with success in the Six Nations. The table includes the coefficients and significance levels for each metric, allowing us to determine which factors are most important in driving success in international rugby.  
+
 ![] (https://raw.githubusercontent.com/Crossy10/Harrison-Cross---BEE2041-Emperical-Project-Repo/main/results/tables/regressionTable_page_1.png){width=80% fig-align="center"}
 
 
