@@ -25,9 +25,11 @@ Kicking is becoming an ever-increasing feature from the highest-ranked teams, de
 In this analysis, I will address the question of what drives success in international rugby, focusing on the Six Nations, using match statistics to identify the key factors that contribute to winning tournaments and becoming more competitive
 
 
-## Data and Methodology
-For all the data and methodology information section, click the link below to view the Data and Methodology page, which contains all the relevant information about the data and how I will be analysing it.  
+## Data, Methodology and Results
+For all the data, methodology and results information sections, click the links below to view the respective pages, which contains all the relevant information about the data and how I will be analysing it and the results of said analysis.
+
 [View Data and Methodology →](information_website.html)
+[View Results →](results.html)  
 
 ## Analysis
 The graph below shows the historical trends in the finishing position of each team in the Six Nations from 2000 to 2026, with vertical dashed lines indicating significant changes in the tournament, such as the introduction of a new points scoring system in 2017 and the beginning of advanced stats recording in 2020.  
@@ -38,9 +40,21 @@ The table below shows the results of the regression analysis, which identifies t
 
 ![](https://raw.githubusercontent.com/Crossy10/Harrison-Cross---BEE2041-Emperical-Project-Repo/main/results/tables/regressionTable_page_1.png){width=80% fig-align="center"}
 
+ Insightfulness: is the analysis insightful and compelling? Are there some interesting, thought-provoking,
+and/or surprising findings?
+4
+• Soundness: Is the analysis sound? Are all comparisons fair (not comparing apples to oranges)? Was
+proper filtering done? Are plots used appropriately based on data types (e.g., using bar plots for
+categorical data points, scatter plots for independent data points, lines for time series)?
+• Presentation: Is the narrative coherent? does it all read as a one story? Is it easy to understand the
+post? Is it easy to follow the ideas and the main story? Are there appropriate (and readable) labels,
+legends, and captions provided for plots?
+• Visual appeal: are the plots visually appealing (well set-up, appropriate colours, non-trivial yet simple
+plots)?
 
-## Results, Conclusion and References
-For the results, conclusion and references sections, click the links below to view the respective pages, which contain all the relevant information about the results of the analysis, the conclusions drawn from it and the references and resources used in this project.  
-[View Results →](results.html)  
-[View Conclusion →](conclusion.html)  
-[View References →](ref_and_res.html)  
+
+## Conclusion 
+In conclusion, this analysis has identified the key performance metrics that are most strongly associated with success in the Six Nations Championship. By understanding these factors, teams can focus on improving their performance in these areas to increase their chances of winning the tournament and becoming more competitive. The insights gained from this analysis can also be applied to other international rugby competitions, such as the Rugby World Cup, to further understand what drives success in international rugby. 
+
+## References and Resources
+this is the references and resources section, which contains all the relevant information about the references and resources used in this project.

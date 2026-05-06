@@ -1,5 +1,0 @@
----
-title: "References and Resources"
----
-
-This is the references and resources page.
