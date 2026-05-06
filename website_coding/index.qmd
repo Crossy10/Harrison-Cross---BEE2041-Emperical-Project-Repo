@@ -34,6 +34,9 @@ The graph below shows the historical trends in the finishing position of each te
 
 ![](https://raw.githubusercontent.com/Crossy10/Harrison-Cross---BEE2041-Emperical-Project-Repo/main/results/figures/six_nations.gif){width=80% fig-align="center"}
 
+The table below shows the results of the regression analysis, which identifies the key performance metrics that are most strongly associated with success in the Six Nations. The table includes the coefficients and significance levels for each metric, allowing us to determine which factors are most important in driving success in international rugby.
+![] (https://raw.githubusercontent.com/Crossy10/Harrison-Cross---BEE2041-Emperical-Project-Repo/main/results/tables/regressionTable_page_1.png){width=80% fig-align="center"}
+
 
 ## Results, Conclusion and References
 For the results, conclusion and references sections, click the links below to view the respective pages, which contain all the relevant information about the results of the analysis, the conclusions drawn from it and the references and resources used in this project.  
