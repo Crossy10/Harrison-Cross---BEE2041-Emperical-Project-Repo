@@ -559,6 +559,7 @@ def coef_plot(model_ordered):
     x_abs_max = (abs(ci["upper"].max()) * 1.05)
 
     fig, ax = plt.subplots(figsize=figure_size_for_plots())
+    fig.subplots_adjust(left=0.28) 
 
     for i, (name, val) in enumerate(coef.items()):
         ax.barh(i, val, color=colours[i], alpha=0.82, height=0.55)
@@ -583,7 +584,7 @@ def coef_plot(model_ordered):
     ax.set_yticks(range(len(coef)))
 
     
-    ax.set_yticklabels([REG_VAR_LABELS.get(n, n.replace("_", " ").title()) for n in coef.index])
+    ax.set_yticklabels([REG_VAR_LABELS.get(n, n.replace("_", " ").title()) for n in coef.index], fontsize=9)
 
     ax.set_xlabel(
         "Ordered Logit Coefficient\n"
