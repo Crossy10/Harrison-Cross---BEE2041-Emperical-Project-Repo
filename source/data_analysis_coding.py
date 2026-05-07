@@ -28,6 +28,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation # for creating plots as animations
+import matplotlib.patches as mpatches
 import os
 
 
@@ -66,6 +67,25 @@ TEAM_COLOURS_for_GS = {
     "Ireland":  "#068206",
     "Wales":    "#FF0000",
 }
+
+
+REG_VAR_LABELS ={'const':'Constant',
+                 'win_rate':'Winning Percentage',
+                 'try_efficiency':'Average Tries Scored Per Game',
+                 'try_conceded_efficiency':'Average Tries Conceded Per Game',
+                 'point_difference_efficiency':'Average Points Difference Per Game ',
+                 'attack_efficiency':'Average Defenders Beaten per carry',
+                 'avg_offload_per_game':'Average Offload per Game',
+                 'goal_kick_success_percent':'Goal Kick Success Percent',
+                 'tackle_success_percent':'Tackle Success Percent',
+                 'lineout_success_percent':'Lineout Success Percent',
+                 'avg_lineout_steals_per_game':'Average Lineout Steals per Game',
+                 'metres_per_carry':'Average Metres Per Carry per game',
+                 'post_contact_metres_per_carry':'Average Post Contact Metres Per Carry per game',
+                 'avg_kicks_in_play':'Average Kicks In Play per Game',
+                 'avg_kick_metres_per_game':'Average Kick Metres per Game',
+                 'avg_dominant_tackle_contact_per_game':'Average Dominant Tackle Contact per Game',
+                 'avg_turnovers_won_per_game':'Average Turnovers Won per Game'}
 
 # ──────────────────────Defining Functions used in code─────────────────────
 def explore_dataframe(df):
@@ -149,7 +169,7 @@ six_nations_df["avg_lineout_steals_per_game"] = six_nations_df["lineout_steals"]
 six_nations_df["avg_kicks_in_play"] = six_nations_df["kicks_in_play"] / six_nations_df["matches_played"]
 
 # Average kicks meters per game
-six_nations_df["avg_kick_meters_per_game"] = six_nations_df["kick_metres"] / six_nations_df["matches_played"]
+six_nations_df["avg_kick_metres_per_game"] = six_nations_df["kick_metres"] / six_nations_df["matches_played"]
 
 # Average Dominant tackle contact per game
 six_nations_df["avg_dominant_tackle_contact_per_game"] = six_nations_df["dominant_tackle_contact"] / six_nations_df["matches_played"]
@@ -189,7 +209,6 @@ print("""
       
       """)
 
-
 #------------------------------------------------------------------------------
 #--- (2) Creating visualisation of historical trends in final positions by team (animated line graph)
 #------------------------------------------------------------------------------
@@ -205,10 +224,10 @@ def plot_historical_positions(six_nations_df):
         six_nations_df_frame = six_nations_df[six_nations_df['year'] <= year]    
         # filter the dataframe to include only data up to the current frame as it cycles through the years
 
-        for team, grp in six_nations_df_frame.groupby('team'): # group the filtered dataframe by team to plot each team's data separately
-            create_line_plot(grp['year'], grp['final_position'], ax, team)
+        for team, group in six_nations_df_frame.groupby('team'): # group the filtered dataframe by team to plot each team's data separately
+            create_line_plot(group['year'], group['final_position'], ax, team)
             
-            last = grp[grp["year"] == grp["year"].max()].iloc[-1]
+            last = group[group["year"] == group["year"].max()].iloc[-1]
             line_plot_annotation(team, last["year"], last["final_position"], ax, team)
             # adding annotations to the plot to label each team's line with the team name at the last data point for that team in the current year (frame). 
              
@@ -289,12 +308,12 @@ def plot_kicks_in_play(six_nations_df_2020_onwards):
         six_nations_df_frame = six_nations_df_2020_onwards[six_nations_df_2020_onwards['year'] <= year]    
         # filter the dataframe to include only data up to the current frame as it cycles through the years
 
-        for team, grp in six_nations_df_frame.groupby('team'):
-            create_line_plot(grp['year'], grp['avg_kicks_in_play'], ax1, team) 
+        for team, group in six_nations_df_frame.groupby('team'):
+            create_line_plot(group['year'], group['avg_kicks_in_play'], ax1, team) 
             
-            create_scatter_plot(grp['avg_kicks_in_play'], grp['final_position'], ax2, team)
+            create_scatter_plot(group['avg_kicks_in_play'], group['final_position'], ax2, team)
             
-            last = grp[grp["year"] == grp["year"].max()].iloc[-1]
+            last = group[group["year"] == group["year"].max()].iloc[-1]
             
             line_plot_annotation(team, last["year"], last["avg_kicks_in_play"], ax1, team)
             # adding annotations to the plot to label each team's line with the team name at the last data point for that team in the current year (frame). 
@@ -352,13 +371,14 @@ plot_kicks_in_play(six_nations_df_2020_onwards) # calling the function to create
 
 #------------------------------------------------------------------------------
 #--- (5) Logit Regression to explore which features are important in winning the Six Nations and achieving a higher final position 
+#Done with the help of Claude AI
 #------------------------------------------------------------------------------
 
 
 six_nations_regression_df = six_nations_df.copy() # creating a copy of the cleaned dataframe to use for regression analysis
 
 regression_columns = ['win_rate', 'try_efficiency','try_conceded_efficiency',
-                      'point_difference_efficiency','attack_efficiency ', 
+                      'point_difference_efficiency','attack_efficiency', 
                       'avg_offload_per_game', 'goal_kick_success_percent',
                       'tackle_success_percent', 'lineout_success_percent',
                       'avg_lineout_steals_per_game', 'metres_per_carry', 
@@ -414,23 +434,7 @@ pystout(models= [model_ordered],
             ],    
         digits=3, 
         endog_names=["Final Position"], 
-        varlabels={'const':'Constant',
-                   'win_rate':'Winning Percentage',
-                   'try_efficiency':'Average Tries Scored Per Game',
-                   'try_conceded_efficiency':'Average Tries Conceded Per Game',
-                   'point_difference_efficiency':'Average Points Difference Per Game ',
-                   'attack_efficiency ':'Average Defenders Beaten per carry',
-                   'avg_offload_per_game':'Average Offload per Game',
-                   'goal_kick_success_percent':'Goal Kick Success Percent',
-                   'tackle_success_percent':'Tackle Success Percent',
-                   'lineout_success_percent':'Lineout Success Percent',
-                   'avg_lineout_steals_per_game':'Average Lineout Steals per Game',
-                   'metres_per_carry':'Average Metres Per Carry per game',
-                   'post_contact_metres_per_carry':'Average Post Contact Metres Per Carry per game',
-                   'avg_kicks_in_play':'Average Kicks In Play per Game',
-                   'avg_kick_metres_per_game':'Average Kick Metres per Game',
-                   'avg_dominant_tackle_contact_per_game':'Average Dominant Tackle Contact per Game',
-                   'avg_turnovers_won_per_game':'Average Turnovers Won per Game'}, 
+        varlabels= REG_VAR_LABELS, 
         modstat={'nobs':'Obs'},
         stars =  {.1:'*',.05:'**',.01:'***'})
 #----------------------------------------------------------------------
@@ -521,8 +525,82 @@ for ext in ['*.aux', '*.log', '*.pdf', '*.tex']:
 
 #------------------------------------------------------------------------------
 #--- (6) Creating visualisation of regression coefficients (box and whisker plot)
+# Done with the help of Claude AI
 #------------------------------------------------------------------------------
+def coef_plot(model_ordered):
+    # Extract only predictor coefficients (excepet for two that make the plot massive)
+    # Threshold parameters contain '/' in their name
+    EXCLUDE = ['win_rate', 'attack_efficiency']
 
+    coef_par = [par for par in model_ordered.params.index 
+               if '/' not in str(par) and par not in EXCLUDE]
+    
+    coef = model_ordered.params[coef_par]
+
+    
+    # Extracting P-values
+    pvalues = model_ordered.pvalues[coef_par]
+
+    # Extracting CI bounds
+    ci = model_ordered.conf_int(alpha=0.1).loc[coef_par]
+    ci.columns = ["lower", "upper"]
+
+    # Sort by absolute magnitude so we can have most impactful at top
+    order = coef.abs().sort_values(ascending=True).index
+    coef  = coef[order]
+    ci    = ci.loc[order]
+    pvalues = pvalues[order]
+
+    # Colour bars by Significance
+    colours = ["#19c2ac" if p<0.1 else "#5c5c5c" for p in pvalues]
+
+    # Setting graph limits
+    x_abs_min = (abs(ci["lower"].min()) * 1.05)
+    x_abs_max = (abs(ci["upper"].max()) * 1.05)
+
+    fig, ax = plt.subplots(figsize=figure_size_for_plots())
+
+    for i, (name, val) in enumerate(coef.items()):
+        ax.barh(i, val, color=colours[i], alpha=0.82, height=0.55)
+        ax.errorbar(
+            val, i,
+            xerr=[[val - ci.loc[name, "lower"]],
+                  [ci.loc[name, "upper"] - val]],
+            fmt="none", color="black", capsize=4, linewidth=1.2,
+        )
+
+        # Value label centred above each bar
+        ax.text(
+            val / 2,    # horizontal centre of the bar
+            i + 0.32,   # just above the bar (bar height=0.55, so 0.32 clears it)
+            f"{val:+.3f}",
+            va="bottom", ha="center", fontsize=8,
+        )   
+
+    ax.axvline(0, color="black", linewidth=0.9)
+    ax.set_xlim(-x_abs_min, x_abs_max)
+    ax.set_xticks(np.arange(round(-x_abs_min -0.5), round(x_abs_max +0.5) ,1))
+    ax.set_yticks(range(len(coef)))
+
+    
+    ax.set_yticklabels([REG_VAR_LABELS.get(n, n.replace("_", " ").title()) for n in coef.index])
+
+    ax.set_xlabel(
+        "Ordered Logit Coefficient\n"
+        "(negative = associated with finishing higher / better position)")
+    
+    ax.set_title("What Predicts Six Nations Finishing Position?\nOrdered Logit Coefficients with 90% CI (2020–2026)", fontweight="bold", pad=10)
+    ax.grid(axis="x", linestyle="--", alpha=0.25)
+
+    # Legend
+    neg_patch = mpatches.Patch(color="#1a9988", label="Significant at 10% level")
+    pos_patch = mpatches.Patch(color="#e07b39", label="NOT Significant at 10% level")
+    ax.legend(handles=[neg_patch, pos_patch],
+              frameon=False, loc="lower right")
+
+    fig.savefig(FIG + "regression_coefficients.png")
+
+coef_plot(model_ordered)
 
 
 #------------------------------------------------------------------------------
@@ -542,9 +620,9 @@ def scatter_plot_pcm_vs_tsp(six_nations_df_2020_onwards):
         # filter the dataframe to include only data up to the current frame as it cycles through the years
 
         # Scatter plot of average post-contact meters per carry against final position
-        for team, grp in six_nations_df_frame.groupby('team'):
-            create_scatter_plot(grp['post_contact_metres_per_carry'], grp['final_position'], ax1, team)
-            create_scatter_plot(grp['tackle_success_percent'], grp['final_position'], ax2, team)
+        for team, group in six_nations_df_frame.groupby('team'):
+            create_scatter_plot(group['post_contact_metres_per_carry'], group['final_position'], ax1, team)
+            create_scatter_plot(group['tackle_success_percent'], group['final_position'], ax2, team)
 
         if year == 2026: # adding a regression line to the scatter plot in the final frame (2026) to show the overall trend in the relationship between average post-contact meters per carry and final position in the tournament.
             fit_line_for_scatter_plot(six_nations_df_frame['post_contact_metres_per_carry'], six_nations_df_frame['final_position'], ax1)
