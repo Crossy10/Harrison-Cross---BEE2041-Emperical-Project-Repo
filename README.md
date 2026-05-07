@@ -192,9 +192,6 @@ python3 source/data_analysis_coding.py
 
 This will populate `data/clean_data/` with the cleaned CSV and all output figures and tables in `results/figures/` and `results/tables` respectively.
 
- 
-
-
 
 ### Step 2. Open the website**  
 Open the website [here](https://crossy10.github.io/Harrison-Cross---BEE2041-Emperical-Project-Repo/) 
