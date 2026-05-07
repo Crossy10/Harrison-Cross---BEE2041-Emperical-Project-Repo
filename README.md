@@ -88,13 +88,19 @@ Emperical project/
 │    └── data_analysis.py                                  # python coding script
 │
 ├── results/
-│    ├── figures/
+│    ├── figures/                                          # PNG and GIF graphs from coding
+│    │  ├── attackingPCM_vs_defensiveTSP_scatter.gif  
+│    │  ├── grand_slams.png  
+│    │  ├── kicks_in_play_dual_panel.gif  
+│    │  ├── regression_coefficients.png 
+│    │  └── six_nations.gif  
+│    │
 │    └── tables/
-|
+│       └── regressionTable.png                            # PNG Regression table from coding
 │
 ├── website_coding/
 │    ├── _quarto.yml
-|    ├── data&method.qmd                                  # Data & methodology page for my website
+|    ├── data.qmd                                          # Data & methodology page for my website
 |    ├── index.qmd                                         # Home page for my website
 |    ├── results.qmd                                       # Results page for my website
 │    └── styles.css
