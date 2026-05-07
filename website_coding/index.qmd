@@ -56,7 +56,7 @@ The box and whisker plot below shows the Logit regression coefficients for the k
 ![](https://raw.githubusercontent.com/Crossy10/Harrison-Cross---BEE2041-Emperical-Project-Repo/main/results/figures/regression_coefficients.png){width=80% fig-align="center"}
 
 the figure below shows the scatter plot of attacking metric of average post contact metres per game against the defensive metric of tackle success percentage for each team in the Six Nations from 2020 to 2026, with points colored by finishing position, illustrating the relationship between attacking and defensive performance and how they may jointly contribute to success in the tournament.
-![](https://raw.githubusercontent.com/Crossy10/Harrison-Cross---BEE2041-Emperical-Project-Repo/main/results/figures/attacking_defensive_scatter.png){width=80% fig-align="center"}
+![](https://raw.githubusercontent.com/Crossy10/Harrison-Cross---BEE2041-Emperical-Project-Repo/main/results/figures/attackingPCM_vs_defensiveTSP_scatter.gif){width=80% fig-align="center"}
 
 the figure below shows the animated casual average treatment effects of the key performance metrics identified in the regression analysis on ...
 ![](https://raw.githubusercontent.com/Crossy10/Harrison-Cross---BEE2041-Emperical-Project-Repo/main/results/figures/causal_effects.gif){width=80% fig-align="center"}
