@@ -80,7 +80,9 @@ Emperical project/
 │    │  └── six_nations_RAW-DATA.csv 
 │    │ 
 │    └── clean_data/                                       # Clean data in CSV format
-│      └── six_nations_RAW-DATA.csv 
+|      ├── six_nations_full_columns_&_eras_CLEAN-DATA.csv
+|      ├── six_nations_full_columns_CLEAN-DATA.csv
+│      └── six_nations_CLEAN-DATA.csv 
 │
 ├── source/
 │    └── data_analysis.py                                  # python coding script
@@ -92,9 +94,7 @@ Emperical project/
 │
 ├── website_coding/
 │    ├── _quarto.yml
-|    ├── about.qmd                                         # About page for my website 
-|    ├── blog_website.qmd                                  # Info page for my website
-|    ├── conclusion.qm                                     # Conclusion page for my website
+|    ├── data&method.qmd                                  # Data & methodology page for my website
 |    ├── index.qmd                                         # Home page for my website
 |    ├── results.qmd                                       # Results page for my website
 │    └── styles.css

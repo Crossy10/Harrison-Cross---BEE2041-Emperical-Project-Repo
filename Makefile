@@ -43,18 +43,4 @@ data:
 analysis:
 	python3 $(PYTHON_SCRIPT)
 
-
-# --- Help ---
-help:
-	@echo ""
-	@echo "Usage: make [target]"
-	@echo ""
-	@echo "  all       Run full pipeline (scrape → data → analysis)"
-	@echo "  scrape    Scrape all data from web"
-	@echo "  data      Compile scraped data into raw CSV"
-	@echo "  analysis  Clean data and run analysis (cleaning at top of script)"
-	@echo "  clean     Remove all generated data files"
-	@echo "  help      Show this help message"
-	@echo ""
-
 .PHONY: all scrape data analysis clean help
