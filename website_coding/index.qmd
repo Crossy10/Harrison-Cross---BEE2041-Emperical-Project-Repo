@@ -28,7 +28,7 @@ In this analysis, I will address the question of what drives success in internat
 ## Data and Results
 For all the data and results information sections, click the links below to view the respective pages, which contains all the relevant information about the data and the results of the analysis performed.
 
-[View Data →](information_website.html) 
+[View Data →](data.html) 
 
 [View Results →](results.html)  
 

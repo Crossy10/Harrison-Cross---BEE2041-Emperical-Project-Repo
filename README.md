@@ -52,56 +52,53 @@ The key variables used in this analysis are:
 
 | Variable | Description |
 |---|---|
-| `final_position` | Outcome: Where eache team finished in each year of the Six Nations |
-| `year` |  |
-| `team` | W |
-| `grand_slam` | W |
-| `matches_played` | W |
-| `matches_won` | W |
-| `matches_drawn` | W |
-| `matches_lost` | W |
-| `points_scored` | W |
-| `points_conceded` | W |
-| `points_difference` | W |
-| `tries_scored` | W |
-| `tries_conceded` | W |
-| `bonus_points` | W |
-| `carries` | W |
-| `offload` | W |
-| `defender_beaten` | W |
-| `missed_tackle` | W |
-| `lineout_steals` | W |
-| `lineout_throws_won` | W |
-| `kicks_in_play` | W |
-| `kick_metres` | W |
-| `dominant_contact` | W |
-| `dominant_tackle_contact` | W |
-| `total_successful_tackles` | W |
-| `total_turnovers_won` | W |
-| `successful_goals` | W |
-| `carry_metres_made` | W |
-| `post_contact_metres` | W |
-| `goal_kick_success_percent` | W |
-| `tackle_success_percent` | W |
-| `lineout_success_percent` | W |
-| `metres_per_carry` | W |
-| `post_contact_metres_per_carry` | W |
-| `kick_metres_per_kick` | W |
-| `win_rate` | W |
-| `try_efficiency` | W |
-| `try_conceded_efficiency` | W |
-| `point_difference_efficiency` | W |
-| `attack_efficiency` | W |
-| `avg_offload_per_game` | W |
-| `avg_lineout_steals_per_game` | W |
-| `avg_kicks_in_play` | W |
-| `avg_kick_metres_per_game` | W |
-| `avg_dominant_tackle_contact_per_game` | W |
-| `avg_turnovers_won_per_game` | W |
-| `Eras` | W |
-
-
-
+| `final_position` | Outcome: Where each team finished in each year of the Six Nations |
+| `year` | Years from 2000-2026 |
+| `team` | Each team in the six nations |
+| `grand_slam` | Whether a team won a grand slam or not (1 if yes, 0 if no, 'N/A' for if a team did not win the Six Nations for that year) |
+| `matches_played` | The number of matches each team played for that year of the Six Nations |
+| `matches_won` | The number of matches each team won for that year of the Six Nations |
+| `matches_drawn` | The number of matches each team drew for that year of the Six Nations |
+| `matches_lost` | The number of matches each team lost for that year of the Six Nations |
+| `points_scored` | The number of points each team scored for that year of the Six Nations |
+| `points_conceded` | The number of points each team conceded for that year of the Six Nations |
+| `points_difference` | The points difference each team achieved for that year of the Six Nations |
+| `tries_scored` | The number of tries each team scored for that year of the Six Nations |
+| `tries_conceded` | The number of tries each team conceded for that year of the Six Nations |
+| `bonus_points` | The number of bonus points each team achieved for that year of the Six Nations |
+| `carries` | The number of carries each team had for that year of the Six Nations |
+| `offload` | The number of offloads each team had for that year of the Six Nations |
+| `defender_beaten` | The number of defenders each team had beaten for that year of the Six Nations |
+| `missed_tackle` | The number of missed tackles each team had for that year of the Six Nations |
+| `lineout_steals` | The number of lineout steals each team had for that year of the Six Nations |
+| `lineout_throws_won` | The number of their own lineout wons each team had for that year of the Six Nations |
+| `kicks_in_play` | The number of kicks each team had for that year of the Six Nations |
+| `kick_metres` | The total number of kick meters each team had for that year of the Six Nations |
+| `dominant_contact` | The number of dominant contact on their carries each team had for that year of the Six Nations |
+| `dominant_tackle_contact` | The number of dominant tackles each team had for that year of the Six Nations |
+| `total_successful_tackles` | The number of total successful tackles each team had for that year of the Six Nations |
+| `total_turnovers_won` | The number of total turnouvers  each team won for that year of the Six Nations |
+| `successful_goals` | The number of successful field goals each team had for that year of the Six Nations |
+| `carry_metres_made` | The total number of meters each team made on their carries for that year of the Six Nations |
+| `post_contact_metres` | The total number of post contact meters each team made on their carries for that year of the Six Nations |
+| `goal_kick_success_percent` | The percentage of successful field goals each team had for that year of the Six Nations |
+| `tackle_success_percent` |  The percentage of successful tackles each team had for that year of the Six Nations  |
+| `lineout_success_percent` |  The percentage of successful lineouts each team had for that year of the Six Nations  |
+| `metres_per_carry` | The total number of meters each team made on per carries for that year of the Six Nations  |
+| `post_contact_metres_per_carry` | The total number of post contact meters each team made on per carries for that year of the Six Nations  |
+| `kick_metres_per_kick` | The total number of kick meters each team made on per kick for that year of the Six Nations |
+| `win_rate` | The win rate each team had for that year of the Six Nations |
+| `try_efficiency` | The rate of tries scored per match each team had for that year of the Six Nations |
+| `try_conceded_efficiency` | The rate of tries conceded per match each team had for that year of the Six Nations |
+| `point_difference_efficiency` | The rate of points difference per match each team had for that year of the Six Nations |
+| `attack_efficiency` | The rate of defenders beaten per carry each team had for that year of the Six Nations |
+| `avg_offload_per_game` | The average offloads each team achieved per game had for that year of the Six Nations |
+| `avg_lineout_steals_per_game` | The average lineout steals each team achieved per game had for that year of the Six Nations |
+| `avg_kicks_in_play` | The average kicks each team achieved per game had for that year of the Six Nations |
+| `avg_kick_metres_per_game` | The average total kicking meters each team achieved per game had for that year of the Six Nations |
+| `avg_dominant_tackle_contact_per_game` | The average dominant tackle contact each team achieved per game had for that year of the Six Nations |
+| `avg_turnovers_won_per_game` | The average turnovers each team won per game had for that year of the Six Nations |
+| `Eras` | The 3 different eras of data and table points system in the dataset |
 
 
 **Note:** The data file is included in this repository, however, the raw data is what is required, it will automatically get cleaned. This clean data will be what is used in the analysis, which is done automatically and updated automatically.
