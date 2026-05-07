@@ -83,4 +83,5 @@ Six Nations Rugby. (2026) *Fixtures and Results*, [https://www.sixnationsrugby.c
 How to animate graphs  
 - GeeksforGeeks. (2025, July). *Matplotlib.animation.FuncAnimation class in python*, [https://www.geeksforgeeks.org/matplotlib-animation-funcanimation-class-in-python/](https://www.geeksforgeeks.org/matplotlib-animation-funcanimation-class-in-python/)
 
+Generative AI used to help with Regression, Makefile and Webscrapping
 - Anthropic Claude. (2023). *Claude* [Large language model]. [https://claude.ai](https://claude.ai)
