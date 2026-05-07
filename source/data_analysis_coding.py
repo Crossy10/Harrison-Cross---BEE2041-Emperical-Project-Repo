@@ -242,6 +242,87 @@ plot_grand_slams(six_nations_df) # calling the function to create and display th
 #------------------------------------------------------------------------------
 #--- (4) Creating visualisation of kicks in play and their relationship with final position (dual panel line graph and scatter plot)
 #------------------------------------------------------------------------------
+six_nations_df_2020_onwards = six_nations_df[six_nations_df["year"]>=2020]
+
+def plot_kicks_in_play(six_nations_df_2020_onwards):
+    frames = six_nations_df_2020_onwards["year"].unique() # extracting unique yrs from 2020 onwards to use as frames for the animation as advanced stats begin to be recorded in 2020. 
+    frames = (list(frames) +[frames[-1]] * 20) # Each frame represents a different year 
+    # The list is extended by repeating the last year multiple times to allow the final year(frame) to be displayed longer in the animation.
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6)) # creating a figure and axis for the plot
+
+    def animate(year):
+        ax1.clear() # clear the first subplot to redraw it
+        ax2.clear() # clear the second subplot to redraw it
+        six_nations_df_frame = six_nations_df_2020_onwards[six_nations_df_2020_onwards['year'] <= year]    
+        # filter the dataframe to include only data up to the current frame as it cycles through the years
+
+        for team, grp in six_nations_df_frame.groupby('team'): #
+            ax1.plot(grp['year'], grp['avg_kicks_in_play'],
+                    marker='o', color=TEAM_COLOURS[team], label=team, linewidth=1.8, alpha=0.8)
+            
+            last = grp[grp["year"] == grp["year"].max()].iloc[-1]
+            ax1.annotate(team,
+                        xy=(last["year"], last["avg_kicks_in_play"]),
+                        xytext=(4, 0), textcoords="offset points",
+                        fontsize=7, color=TEAM_COLOURS[team], va="center")
+            # adding annotations to the plot to label each team's line with the team name at the last data point for that team in the current year (frame). 
+
+        # Tournament-average overlay
+        avg_by_year = six_nations_df_frame.groupby("year")["avg_kicks_in_play"].mean()
+        ax1.plot(
+            avg_by_year.index, avg_by_year.values,
+            color="black", linewidth=2, linestyle="--",
+            alpha=0.55, label="Tournament avg",
+        )
+        ax1.annotate("Tournament average",
+                     xy=(avg_by_year.index[-1], avg_by_year.values[-1]),
+                     xytext=(4, 0), textcoords="offset points",
+                     fontsize=7, va="center")
+     
+
+        ax1.set_xlim(2019.5, 2026.5) # setting the x-axis limits
+        ax1.set_ylim(min(six_nations_df_2020_onwards['avg_kicks_in_play'])-0.5, max(six_nations_df_2020_onwards['avg_kicks_in_play'])+0.5) # setting the y-axis limits
+        ax1.set_xticks(range(2020, 2027, 1)) # setting the x-axis ticks to be every year from 2020 to 2026
+        ax1.set_xlabel("Year")
+        ax1.set_ylabel("Average Kicks in Play per Game")
+        ax1.set_title("Average Kicks in Play per Game Over Time")
+        ax1.grid(axis="y", linestyle="--", alpha=0.25) # adding a grid to the y-axis for better readability
+        ax1.legend(loc='upper left', fontsize=9, frameon=False, bbox_to_anchor=(1.01, 1)) # adding a legend to the plot, positioned outside the plot area on the upper left
+
+        # Scatter plot of average kicks in play per game against final position
+        for team, grp in six_nations_df_frame.groupby('team'):
+            ax2.scatter(grp['avg_kicks_in_play'], grp['final_position'], color=TEAM_COLOURS[team], s=60, alpha=0.8, edgecolors="white", linewidth=0.5, label=team)
+
+        if len(six_nations_df_frame) >=4: # adding a regression line to the scatter plot if there are at least 4 data points in the current frame (year) to ensure a meaningful regression line can be fitted.
+            z = np.polyfit(six_nations_df_frame['avg_kicks_in_play'], six_nations_df_frame['final_position'], 1)
+            p = np.poly1d(z)
+            ax2.plot(six_nations_df_frame['avg_kicks_in_play'], p(six_nations_df_frame['avg_kicks_in_play']), color='grey', linestyle='--', linewidth=1, alpha=0.6)
+            # fitting a linear regression line to the scatter plot data and plotting it as a dashed grey line to show the overall trend in the relationship between average kicks in play per game and final position in the tournament.
+
+        ax2.set_title("Average Kicks in Play per Game vs Final Position")
+
+        ax2.set_xlabel("Average Kicks in Play per Game")
+        ax2.set_xlim(min(six_nations_df_2020_onwards['avg_kicks_in_play'])-0.5, max(six_nations_df_2020_onwards['avg_kicks_in_play'])+0.5) # setting the x-axis limits to be slightly wider than the range of average kicks in play per game in the dataset for better visualization
+
+        ax2.set_ylabel("Final Position")
+        ax2.set_ylim(6.3, 0.7) # setting the y-axis limits (inverted: 1st at top)
+        ax2.set_yticks(range(1, 7)) # setting the y-axis ticks to be from 1 to 6, representing the final positions of the teams in the tournament
+        ax2.set_yticklabels(["1st", "2nd", "3rd", "4th", "5th", "6th"]) 
+
+        ax2.grid(linestyle="--", alpha=0.25) # adding a grid to the y-axis for better readability
+        
+        fig.suptitle("How average Kicks in Play per Game Relates to Final Position in the Six Nations Tournament",
+            fontsize=13, fontweight="bold",
+        )
+
+    ani = animation.FuncAnimation(fig,animate, frames=frames, interval=300, repeat=True)
+    
+    ani.save(FIG + "kicks_in_play_dual_panel.gif", writer="pillow", fps=2)
+    
+plot_kicks_in_play(six_nations_df_2020_onwards) # calling the function to create and save the dual panel line graph and scatter plot of average kicks in play per game and their relationship with final position in the Six Nations tournament.
+
+
 
 #------------------------------------------------------------------------------
 #--- (5) Logit Regression to explore which features are important in winning the Six Nations and achieving a higher final position 
