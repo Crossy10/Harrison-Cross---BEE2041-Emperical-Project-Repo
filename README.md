@@ -31,10 +31,8 @@ This project aims to investigate the key factors that determine success in the S
 Thus, the central reseach question is: 
 **What factors most strongly predict the match outcomes in rugby?**
 
-This is done in two complementary approaches:
-- **OLS regression** with interaction terms, to test for heterogeneity along specific, pre-specified dimensions
+This is done in using **Logit regression** (via `OrderedModel`) to evaluate the different performance metrics impact the probability to finishing higher in the Six Nations Championship.
 
-- **Causal Forests** (via `econml`), a machine learning method that estimates individualised treatment effects (CATEs) without requiring pre-specification of interaction terms.
 
 I have used 2 datasets from the Six Nations website, done by webscrapping the results tables and the team statistics tab, and then combined them together using SQL. These datasets involve match statistics such as tries, carry meters and tackles.
 
@@ -47,16 +45,64 @@ or follow the link: (https://crossy10.github.io/Harrison-Cross---BEE2041-Emperic
 ## Data
 The raw dataset (`six_nations_RAW-DATA.csv`) comes from combining the two webscrapped datasets from the Six Nations website. It is in `.csv` format and is read directly using `pandas`.
 
-The clean dataset (`six_nations_RAW-DATA.csv`), used in this analysis also is in `.csv` format and is read directly using `pandas`.
+The clean dataset (`six_nations_CLEAN-DATA.csv`), used in this analysis also is in `.csv` format and is read directly using `pandas`.
 
 
 The key variables used in this analysis are:
 
 | Variable | Description |
 |---|---|
-| `c` | Outcome: |
-| `f` | Treatment: |
-| `final_position` | Where eache team finished in each year of the Six Nations |
+| `final_position` | Outcome: Where eache team finished in each year of the Six Nations |
+| `year` |  |
+| `team` | W |
+| `grand_slam` | W |
+| `matches_played` | W |
+| `matches_won` | W |
+| `matches_drawn` | W |
+| `matches_lost` | W |
+| `points_scored` | W |
+| `points_conceded` | W |
+| `points_difference` | W |
+| `tries_scored` | W |
+| `tries_conceded` | W |
+| `bonus_points` | W |
+| `carries` | W |
+| `offload` | W |
+| `defender_beaten` | W |
+| `missed_tackle` | W |
+| `lineout_steals` | W |
+| `lineout_throws_won` | W |
+| `kicks_in_play` | W |
+| `kick_metres` | W |
+| `dominant_contact` | W |
+| `dominant_tackle_contact` | W |
+| `total_successful_tackles` | W |
+| `total_turnovers_won` | W |
+| `successful_goals` | W |
+| `carry_metres_made` | W |
+| `post_contact_metres` | W |
+| `goal_kick_success_percent` | W |
+| `tackle_success_percent` | W |
+| `lineout_success_percent` | W |
+| `metres_per_carry` | W |
+| `post_contact_metres_per_carry` | W |
+| `kick_metres_per_kick` | W |
+| `win_rate` | W |
+| `try_efficiency` | W |
+| `try_conceded_efficiency` | W |
+| `point_difference_efficiency` | W |
+| `attack_efficiency` | W |
+| `avg_offload_per_game` | W |
+| `avg_lineout_steals_per_game` | W |
+| `avg_kicks_in_play` | W |
+| `avg_kick_metres_per_game` | W |
+| `avg_dominant_tackle_contact_per_game` | W |
+| `avg_turnovers_won_per_game` | W |
+| `Eras` | W |
+
+
+
+
 
 **Note:** The data file is included in this repository, however, the raw data is what is required, it will automatically get cleaned. This clean data will be what is used in the analysis, which is done automatically and updated automatically.
 
@@ -214,19 +260,26 @@ Running the pipeline produces the following files:
 
 | File | Description |
 |---|---|
+| `attackingPCM_vs_defensiveTSP_scatter.gif` |---|
+| `grand_slams.png` |---|
+| `kicks_in_play_dual_panel.gif` |---|
+| `regression_coefficients.png` |---|
+| `six_nations.gif` |---|
 
 ### Tables (`results/tables/`)
 
 | File | Description |
 |---|---|
-
----
+| `regressionTable.png` | ---|
 
 ## Methods
 ### Webscrapping
 Web scraped relevant data off the Six Nations website as mentioned earlier and using the package selinium in the process. 
 
 This data is correctly referenced on the website and in the references section of this ReadME.
+
+### Coding - Cleaning and Analysis
+asldkfj
 
 ### Website
 To create my website, I used Quarto pages and generated a yml and used css to style and can be accessed in the top of this repositiory
@@ -240,6 +293,9 @@ To create my website, I used Quarto pages and generated a yml and used css to st
 
 > Six Nations Rugby. (2026) *Fixtures and Results*, (https://www.sixnationsrugby.com/en/m6n/fixtures)
 
-**Coding:**
+**Coding:**  
+pystout (LaTeX table export): [https://github.com/stephenholtz/pystout](https://github.com/stephenholtz/pystout)
+
 How to animate graphs
 > GeeksforGeeks. (2025, July). *Matplotlib.animation.FuncAnimation class in python*, (https://www.geeksforgeeks.org/matplotlib-animation-funcanimation-class-in-python/)
+
