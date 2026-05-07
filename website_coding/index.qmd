@@ -79,7 +79,7 @@ Six Nations Rugby. (2026) *Statistics*, [https://www.sixnationsrugby.com/en/m6n/
 
 Six Nations Rugby. (2026) *Fixtures and Results*, [https://www.sixnationsrugby.com/en/m6n/fixtures](https://www.sixnationsrugby.com/en/m6n/fixtures)
 
-**Coding**
+**Coding:**  
 How to animate graphs  
 - GeeksforGeeks. (2025, July). *Matplotlib.animation.FuncAnimation class in python*, [https://www.geeksforgeeks.org/matplotlib-animation-funcanimation-class-in-python/](https://www.geeksforgeeks.org/matplotlib-animation-funcanimation-class-in-python/)  
 
