@@ -160,7 +160,7 @@ TEAM_COLOURS_for_GS = {
 # Creating a function that creates an animated line plot to visualize the historical trends in final positions for each team in the Six Nations tournament from 2000 to 2026.
 def plot_historical_positions(six_nations_df):
     frames = six_nations_df["year"].unique() # extracting unique yrs to use as frames for the animation. 
-    frames = (list(frames) +[frames[-1]] * 15) # Each frame represents a different year 
+    frames = (list(frames) +[frames[-1]] * 12) # Each frame represents a different year 
     # The list is extended by repeating the last year multiple times to allow the final year(frame) to be displayed longer in the animation.
 
     fig, ax = plt.subplots(figsize=(12, 6)) # creating a figure and axis for the plot
@@ -246,10 +246,11 @@ six_nations_df_2020_onwards = six_nations_df[six_nations_df["year"]>=2020]
 
 def plot_kicks_in_play(six_nations_df_2020_onwards):
     frames = six_nations_df_2020_onwards["year"].unique() # extracting unique yrs from 2020 onwards to use as frames for the animation as advanced stats begin to be recorded in 2020. 
-    frames = (list(frames) +[frames[-1]] * 20) # Each frame represents a different year 
+    frames = (list(frames) +[frames[-1]] * 15) # Each frame represents a different year 
     # The list is extended by repeating the last year multiple times to allow the final year(frame) to be displayed longer in the animation.
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6)) # creating a figure and axis for the plot
+    fig.subplots_adjust(wspace=0.6)
 
     def animate(year):
         ax1.clear() # clear the first subplot to redraw it
@@ -311,6 +312,8 @@ def plot_kicks_in_play(six_nations_df_2020_onwards):
         ax2.set_yticklabels(["1st", "2nd", "3rd", "4th", "5th", "6th"]) 
 
         ax2.grid(linestyle="--", alpha=0.25) # adding a grid to the y-axis for better readability
+
+        ax2.legend(loc='upper left', fontsize=9, frameon=False, bbox_to_anchor=(1.01, 1)) # adding a legend to the scatter plot, positioned outside the plot area on the upper left
         
         fig.suptitle("How average Kicks in Play per Game Relates to Final Position in the Six Nations Tournament",
             fontsize=13, fontweight="bold",
