@@ -471,19 +471,15 @@ for i, image in enumerate(images):
     output_path = TAB + f'regressionTable_page_{i+1}.png'
     cropped.save(output_path, 'PNG')
 
-    print(f"Saved cropped page {i+1}")
-
 # Delete specific extensions in a directory
 for ext in ['*.aux', '*.log', '*.pdf', '*.tex']:
     for f in glob.glob(TAB + ext):
         os.remove(f)
 
 
-
 #------------------------------------------------------------------------------
 #--- (6) Creating visualisation of regression coefficients (box and whisker plot)
 #------------------------------------------------------------------------------
-
 
 #------------------------------------------------------------------------------
 #--- (7) Creating visualisation of relationship between attacking and defensive performance (scatter plot)
