@@ -7,8 +7,8 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: data&method.qmd
-        text: Data and Methodology
+      - href: data.qmd
+        text: Data
       - href: results.qmd
         text: Results
 

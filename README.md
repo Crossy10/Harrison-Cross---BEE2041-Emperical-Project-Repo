@@ -230,6 +230,10 @@ To create my website, I used Quarto pages and generated a yml and used css to st
 ## References and Resources
 
 **Data:** 
-> Six Nations Rugby (2026) *Statistics*, (https://www.sixnationsrugby.com/en/m6n/stats)
+> Six Nations Rugby. (2026) *Statistics*, (https://www.sixnationsrugby.com/en/m6n/stats)
 
-> Six Nations Rugby (2026) *Fixtures and Results*, (https://www.sixnationsrugby.com/en/m6n/fixtures)
+> Six Nations Rugby. (2026) *Fixtures and Results*, (https://www.sixnationsrugby.com/en/m6n/fixtures)
+
+**Coding:**
+How to animate graphs
+> GeeksforGeeks. (2025, July). *Matplotlib.animation.FuncAnimation class in python*, (https://www.geeksforgeeks.org/matplotlib-animation-funcanimation-class-in-python/)

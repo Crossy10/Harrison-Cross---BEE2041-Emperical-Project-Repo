@@ -25,10 +25,10 @@ Kicking is becoming an ever-increasing feature from the highest-ranked teams, de
 In this analysis, I will address the question of what drives success in international rugby, focusing on the Six Nations, using match statistics to identify the key factors that contribute to winning tournaments and becoming more competitive
 
 
-## Data, Methodology and Results
-For all the data, methodology and results information sections, click the links below to view the respective pages, which contains all the relevant information about the data and how I will be analysing it and the results of said analysis.
+## Data and Results
+For all the data and results information sections, click the links below to view the respective pages, which contains all the relevant information about the data and the results of the analysis performed.
 
-[View Data and Methodology →](information_website.html) 
+[View Data →](information_website.html) 
 
 [View Results →](results.html)  
 
@@ -72,4 +72,13 @@ plots)?
 In conclusion, this analysis has identified the key performance metrics that are most strongly associated with success in the Six Nations Championship. By understanding these factors, teams can focus on improving their performance in these areas to increase their chances of winning the tournament and becoming more competitive. The insights gained from this analysis can also be applied to other international rugby competitions, such as the Rugby World Cup, to further understand what drives success in international rugby. 
 
 ## References and Resources
-this is the references and resources section, which contains all the relevant information about the references and resources used in this project.
+This is the references and resources section, which contains all the relevant information about the references and resources used in this project.
+
+**Data:** 
+> Six Nations Rugby. (2026) *Statistics*, (https://www.sixnationsrugby.com/en/m6n/stats)
+
+> Six Nations Rugby. (2026) *Fixtures and Results*, (https://www.sixnationsrugby.com/en/m6n/fixtures)
+
+**Coding:**
+How to animate graphs
+> GeeksforGeeks. (2025, July). *Matplotlib.animation.FuncAnimation class in python*, (https://www.geeksforgeeks.org/matplotlib-animation-funcanimation-class-in-python/)on/
