@@ -138,13 +138,14 @@ The exact versions used to produce the original results are listed below:
 ## Running Instructions
 ### Step 0: Configure the root directory
 
-Before running anything, open the python files in `source/webscrapping_raw_data` as well as the python files in `source/complete_raw_data_python_code` and `source/data_analysis.py`, you update the `ROOT` variable to point to the top level of this repository on your machine:
+Before running anything, open the python files in `source/webscrapping_raw_data` as well as the python files in `source/complete_raw_data_python_code` and `source/data_analysis.py`, you must update the `ROOT` variable to point to the top level of this repository on your machine:
 
 ```python
 ROOT = "/your/path/to/this/project/"
 ```
 
-### Option A: Using `make` (recommended)
+### Step 1: Run the coding
+#### Option A: Using `make` (recommended)
 
 If `make` is available, simply run from the top level of the repository:
 
@@ -152,38 +153,53 @@ If `make` is available, simply run from the top level of the repository:
 make
 ```
 
-This will automatically:
-1. 
+This will automatically run the full pipeline in order:
+1. **Scrape** - Collects the Six Nations stats and table data from the Six Nations Championship Website
+2. **Data** - Compiles all the scrapped data into a single CSV containing all the raw data
+3. **Analysis** - Cleans the raw data and runs the full analysis, producing all output figures and tables
 
-To 
-
-```bash
-make clean
-```
-
-To run only the Python script:
+To run individual steps
 
 ```bash
-make run_python
+make scrape      # Only Scrape data from web
+make data        # Only Compile  data into CSV 
+make analysis    # Only runs python script to clean and  analysise only
 ```
+
 
 ### Option B: Manual steps
 
 If `make` is not available, run the following steps in order:
 
-**1. Run the Python script:**
-
-```bash
-python3 source/data_analysis.py
+**1. Run the Python script to scrape data:**  
+```bash  
+python3 source/webscrapping_raw_data/six_nations_stats_scrapper.py
+python3 source/webscrapping_raw_data/six_nations_table_data.py
 ```
 
-This will populate `results/figures/` and `results/tables/` with all output files.
+This will populate `data/raw_data/` with the CSV files contianing the each scrapped dataset.
 
-**2. 
+**2. Run the Python script to compile the scrapped data:**  
+```bash
+python3 source/complete_raw_data_python_code/obtaining_six_nations_complete_RAW-DATA.py
+```
+This will populate `data/raw_data/` with the CSV files contianing ful raw dataset.
 
-**3. Open the website**  
+**3. Run the Python script to clean and analysise the data**    
+```bash
+python3 source/data_analysis_coding.py
+```
+
+This will populate `data/clean_data/` with the cleaned CSV and all output figures and tables in `results/figures/` and `results/tables` respectively.
+
+ 
+
+
+
+### Step 2. Open the website**  
 Open the website [here](https://crossy10.github.io/Harrison-Cross---BEE2041-Emperical-Project-Repo/) 
-GitHub Pages
+
+This website was created using Quarto and published on GitHub Pages
 
 
 ---
