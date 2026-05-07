@@ -89,6 +89,9 @@ def save_gif(anim, name, fps=2):
     path = FIG + name
     anim.save(path, writer="pillow", fps=fps)
 
+def figure_size_for_plots():
+    return (12, 6)
+
 def create_scatter_plot(x, y, ax, team):
             ax.scatter(x, y, color=TEAM_COLOURS[team], s=60, alpha=0.8, edgecolors="white", linewidth=0.5, label=team)
 
@@ -101,8 +104,11 @@ def fit_line_for_scatter_plot(x, y, ax):
 def legend_location(ax):
     ax.legend(loc='upper left', fontsize=9, frameon=False, bbox_to_anchor=(1.01, 1))
 
+def create_line_plot(x, y, ax, team):
+    ax.plot(x, y, marker='o', color=TEAM_COLOURS[team], label=team, linewidth=1.8, alpha=0.8)
 
-
+def line_plot_annotation(name, x, y, ax, team):
+                ax.annotate(name, xy=(x,y), xytext=(4, 0), textcoords="offset points", fontsize=7, color=TEAM_COLOURS[team], va="center")
 
 #------------------------------------------------------------------------------
 #--- (1) Data Loading and Cleaning
@@ -190,7 +196,7 @@ explore_dataframe(six_nations_df_clean)
 def plot_historical_positions(six_nations_df):
     frames = make_frames(six_nations_df["year"].unique(), pause_end=12)
 
-    fig, ax = plt.subplots(figsize=(12, 6)) # creating a figure and axis for the plot
+    fig, ax = plt.subplots(figsize=figure_size_for_plots()) # creating a figure and axis for the plot
 
     def animate(year):# animate function for animation, takes in the current frame (year) and updates the plot accordingly
         ax.clear() # clear the plot to redraw it
@@ -198,14 +204,10 @@ def plot_historical_positions(six_nations_df):
         # filter the dataframe to include only data up to the current frame as it cycles through the years
 
         for team, grp in six_nations_df_frame.groupby('team'): # group the filtered dataframe by team to plot each team's data separately
-            ax.plot(grp['year'], grp['final_position'],
-                    marker='o', color=TEAM_COLOURS[team], label=team, linewidth=1.8, alpha=0.8)
+            create_line_plot(grp['year'], grp['final_position'], ax, team)
             
             last = grp[grp["year"] == grp["year"].max()].iloc[-1]
-            ax.annotate(team,
-                        xy=(last["year"], last["final_position"]),
-                        xytext=(4, 0), textcoords="offset points",
-                        fontsize=7, color=TEAM_COLOURS[team], va="center")
+            line_plot_annotation(team, last["year"], last["final_position"], ax, team)
             # adding annotations to the plot to label each team's line with the team name at the last data point for that team in the current year (frame). 
              
         if year >= 2020:
@@ -247,20 +249,22 @@ def plot_grand_slams(six_nations_df):
     grand_slams = six_nations_df[six_nations_df["matches_won"] == 5].groupby("team").size().reset_index(name="grand_slams")
     # filtering the dataframe to include only grand slam rows and grouping the data by team and counting the number of grand slams for each team. The result is stored to a new dataframe
 
-    plt.figure(figsize=(10, 6)) # creating a figure for the plot 
+    grand_slams = grand_slams.sort_values(by="grand_slams", ascending=True)
 
-    bars = plt.bar(grand_slams["team"], grand_slams["grand_slams"], color=[TEAM_COLOURS_for_GS[team] for team in grand_slams["team"]], alpha=0.8) 
+    plt.figure(figsize=figure_size_for_plots()) # creating a figure for the plot 
+
+    bars = plt.barh(grand_slams["team"], grand_slams["grand_slams"], color=[TEAM_COLOURS_for_GS[team] for team in grand_slams["team"]], alpha=0.8) 
     # creating the bar chart, where the bars are colored according to the predefined team colors.
 
-    plt.xlabel("Team") # setting the x-axis label
-    plt.ylabel("Number of Grand Slams") # setting the y-axis label
-    plt.title("Number of Grand Slams by Team in Six Nations (2000-2026)") # setting the title of the plot
-    plt.yticks(range(0, grand_slams["grand_slams"].max() + 1, 1)) # setting the y-axis ticks
-    plt.grid(axis="y", linestyle="--", alpha=0.25) # adding a grid to the y-axis for better readability
+    plt.xlabel("Number of Grand Slams") # setting the x-axis label
+    plt.ylabel("Team") # setting the y-axis label
+    plt.title("Number of Grand Slams by Team that have won the Six Nations (2000-2026)") # setting the title of the plot
+    plt.xticks(range(0, grand_slams["grand_slams"].max() + 1, 1)) # setting the y-axis ticks
+    plt.grid(linestyle="--", alpha=0.25) # adding a grid 
 
     for bar in bars: # adding text labels on top of each bar to show the exact number of grand slams for each team
-        height = bar.get_height()
-        plt.text(bar.get_x() + bar.get_width() / 2, height, str(int(height)), ha='center', va='bottom')
+        width = bar.get_width()
+        plt.text(width + 0.05, bar.get_y() + bar.get_height() / 2, str(int(width)), va='center')
 
     plt.savefig(FIG + "grand_slams.png") # saving the plot as a PNG file 
 
@@ -274,7 +278,7 @@ six_nations_df_2020_onwards = six_nations_df[six_nations_df["year"]>=2020]
 def plot_kicks_in_play(six_nations_df_2020_onwards):
     frames = make_frames(six_nations_df_2020_onwards["year"].unique(), pause_end=15) # extracting unique years from 2020 onwards to use as frames for the animation, and extending the list of frames by repeating the last year multiple times to allow the final year (frame) to be displayed longer in the animation.
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6)) # creating a figure and axis for the plot
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=figure_size_for_plots()) # creating a figure and axis for the plot
     fig.subplots_adjust(wspace=0.6)
 
     def animate(year):
@@ -283,17 +287,14 @@ def plot_kicks_in_play(six_nations_df_2020_onwards):
         six_nations_df_frame = six_nations_df_2020_onwards[six_nations_df_2020_onwards['year'] <= year]    
         # filter the dataframe to include only data up to the current frame as it cycles through the years
 
-        for team, grp in six_nations_df_frame.groupby('team'): 
-            ax1.plot(grp['year'], grp['avg_kicks_in_play'],
-                    marker='o', color=TEAM_COLOURS[team], label=team, linewidth=1.8, alpha=0.8)
+        for team, grp in six_nations_df_frame.groupby('team'):
+            create_line_plot(grp['year'], grp['avg_kicks_in_play'], ax1, team) 
             
             create_scatter_plot(grp['avg_kicks_in_play'], grp['final_position'], ax2, team)
             
             last = grp[grp["year"] == grp["year"].max()].iloc[-1]
-            ax1.annotate(team,
-                        xy=(last["year"], last["avg_kicks_in_play"]),
-                        xytext=(4, 0), textcoords="offset points",
-                        fontsize=7, color=TEAM_COLOURS[team], va="center")
+            
+            line_plot_annotation(team, last["year"], last["avg_kicks_in_play"], ax1, team)
             # adding annotations to the plot to label each team's line with the team name at the last data point for that team in the current year (frame). 
 
         # Tournament-average overlay
@@ -350,7 +351,6 @@ plot_kicks_in_play(six_nations_df_2020_onwards) # calling the function to create
 #------------------------------------------------------------------------------
 #--- (5) Logit Regression to explore which features are important in winning the Six Nations and achieving a higher final position 
 #------------------------------------------------------------------------------
-# add in high kicking kicks in play as a treatment variable, (final position and kicks in play interaction term) and then explore the heterogeneity of the treatment effect across different teams since 2020 to see if the importance of kicking in play has changed over time with the introduction of advanced stats and changes in the points scoring system.
 
 
 six_nations_regression_df = six_nations_df.copy() # creating a copy of the cleaned dataframe to use for regression analysis
@@ -428,9 +428,8 @@ pystout(models= [model_ordered],
                    'avg_kicks_in_play':'Average Kicks In Play per Game',
                    'avg_kick_metres_per_game':'Average Kick Metres per Game',
                    'avg_dominant_tackle_contact_per_game':'Average Dominant Tackle Contact per Game',
-                   'avg_turnovers_won_per_game':'Average Turnovers Won per Game'},
-        mgroups={'Baseline':1}, 
-        modstat={'nobs':'Obs'},
+                   'avg_turnovers_won_per_game':'Average Turnovers Won per Game'}, 
+        modstat={'nobs':'Obs', 'aic': 'AIC', 'bic':'BIC'},
         stars =  {.1:'*',.05:'**',.01:'***'})
 
 # Read the pystout-generated .tex fragment
@@ -442,7 +441,7 @@ wrapped_tex = r"""
 \documentclass{article}
 \usepackage{booktabs}
 \usepackage{geometry}
-\geometry{margin=0.5in, landscape}
+\geometry{margin=0.5in, landscape, paperwidth=20in, paperheight=15in}
 \usepackage{caption}
 \usepackage{adjustbox}
 
@@ -450,6 +449,7 @@ wrapped_tex = r"""
 \pagestyle{empty}
 \thispagestyle{empty}
 
+\noindent{\large\textbf{Logit Regression Results}}\\[0.5em]
 \begin{adjustbox}{max width=\textwidth, max totalheight=\textheight, keepaspectratio}
 """ + table_content + r"""
 \end{adjustbox}
@@ -510,7 +510,7 @@ for ext in ['*.aux', '*.log', '*.pdf', '*.tex']:
 def scatter_plot_pcm_vs_tsp(six_nations_df_2020_onwards):
     frames = make_frames(six_nations_df_2020_onwards["year"].unique(), pause_end=15) # extracting unique years from 2020 onwards to use as frames for the animation, and extending the list of frames by repeating the last year multiple times to allow the final year (frame) to be displayed longer in the animation.
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6)) # creating a figure and axis for the plot
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=figure_size_for_plots()) # creating a figure and axis for the plot
     fig.subplots_adjust(wspace=0.6)
 
     def animate(year):
@@ -561,20 +561,3 @@ def scatter_plot_pcm_vs_tsp(six_nations_df_2020_onwards):
     save_gif(ani, "attackingPCM_vs_defensiveTSP_scatter.gif", fps=2)
     
 scatter_plot_pcm_vs_tsp(six_nations_df_2020_onwards) # calling the function to create and save the dual panel line graph and scatter plot of average kicks in play per game and their relationship with final position in the Six Nations tournament.
-
-
-#------------------------------------------------------------------------------
-#--- (8) Estimate causal forest
-#------------------------------------------------------------------------------
-
-#         Treatment: kick_metres_per_kick (continuous)
-#         Outcome:   final_position (lower = better finish)
-#         Covariates: all remaining numeric stats
-#         Heterogeneity explored across: team, year
-
-
-
-#------------------------------------------------------------------------------
-#--- (9) Visualise causal forest results (CATEs)
-#the figure below shows the animated casual average treatment effects of the key performance metrics identified in the regression analysis on …
-#------------------------------------------------------------------------------
