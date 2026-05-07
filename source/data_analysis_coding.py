@@ -145,20 +145,25 @@ TEAM_COLOURS = {
     "Italy":    "#00A6FF",
 }
 
+TEAM_COLOURS_for_GS = {
+    "England":  "#000000",
+    "France":   "#103FDA",
+    "Ireland":  "#068206",
+    "Wales":    "#FF0000",
+}
+
 
 #------------------------------------------------------------------------------
-#--- (2) Visualise historical trends in final positions (animated line plot)
+#--- (2) Creating visualisation of historical trends in final positions by team (animated line graph)
 #------------------------------------------------------------------------------
+
+# Creating a function that creates an animated line plot to visualize the historical trends in final positions for each team in the Six Nations tournament from 2000 to 2026.
 def plot_historical_positions(six_nations_df):
-    # This function creates an animated line plot to visualize the historical trends in final positions for each team in the Six Nations tournament from 2000 to 2026.
-
-    frames = six_nations_df["year"].unique()
-    frames = (list(frames) +[frames[-1]] * 15)
-    # extracting the unique years from the dataframe to use as frames for the animation. 
-    # Each frame will represent a different year in the tournament, allowing us to see the final positions of the teams over time. 
+    frames = six_nations_df["year"].unique() # extracting unique yrs to use as frames for the animation. 
+    frames = (list(frames) +[frames[-1]] * 15) # Each frame represents a different year 
     # The list is extended by repeating the last year multiple times to allow the final year(frame) to be displayed longer in the animation.
 
-    fig, ax = plt.subplots(figsize=(12, 6)) # creating a figure and axis for the plot with a specified size of 12x6
+    fig, ax = plt.subplots(figsize=(12, 6)) # creating a figure and axis for the plot
 
     def animate(year):# animate function for animation, takes in the current frame (year) and updates the plot accordingly
         ax.clear() # clear the plot to redraw it
@@ -203,12 +208,45 @@ def plot_historical_positions(six_nations_df):
     
     ani.save(FIG + "six_nations.gif", writer="pillow", fps=2) # saving the animation as a GIF file in the specified figures directory, using the Pillow writer and setting the frames per second to 2 for a smooth animation.
 
-plot_historical_positions(six_nations_df) # calling the function to create and display the animated line plot of historical trends in final positions for each team in the Six Nations tournament.
-
+plot_historical_positions(six_nations_df) # calling the function to create and save the animated line plot.
 
 #------------------------------------------------------------------------------
-#--- (2) Logit Regression to explore which features are important in winning the Six Nations and achieving a higher final position 
+#--- (3) Creating visualisation of grand slams by team (bar chart)
 #------------------------------------------------------------------------------
+
+# Creating a function that creates a bar chart of the number of grand slams achieved by each team in the Six Nations tournament from 2000 to 2026.
+
+def plot_grand_slams(six_nations_df):
+    grand_slams = six_nations_df[six_nations_df["matches_won"] == 5].groupby("team").size().reset_index(name="grand_slams")
+    # filtering the dataframe to include only grand slam rows and grouping the data by team and counting the number of grand slams for each team. The result is stored to a new dataframe
+
+    plt.figure(figsize=(10, 6)) # creating a figure for the plot 
+
+    bars = plt.bar(grand_slams["team"], grand_slams["grand_slams"], color=[TEAM_COLOURS_for_GS[team] for team in grand_slams["team"]], alpha=0.8) 
+    # creating the bar chart, where the bars are colored according to the predefined team colors.
+
+    plt.xlabel("Team") # setting the x-axis label
+    plt.ylabel("Number of Grand Slams") # setting the y-axis label
+    plt.title("Number of Grand Slams by Team in Six Nations (2000-2026)") # setting the title of the plot
+    plt.yticks(range(0, grand_slams["grand_slams"].max() + 1, 1)) # setting the y-axis ticks
+    plt.grid(axis="y", linestyle="--", alpha=0.25) # adding a grid to the y-axis for better readability
+
+    for bar in bars: # adding text labels on top of each bar to show the exact number of grand slams for each team
+        height = bar.get_height()
+        plt.text(bar.get_x() + bar.get_width() / 2, height, str(int(height)), ha='center', va='bottom')
+
+    plt.savefig(FIG + "grand_slams.png") # saving the plot as a PNG file 
+
+plot_grand_slams(six_nations_df) # calling the function to create and display the bar chart of the number of grand slams achieved by each team in the Six Nations tournament.
+
+#------------------------------------------------------------------------------
+#--- (4) Creating visualisation of kicks in play and their relationship with final position (dual panel line graph and scatter plot)
+#------------------------------------------------------------------------------
+
+#------------------------------------------------------------------------------
+#--- (5) Logit Regression to explore which features are important in winning the Six Nations and achieving a higher final position 
+#------------------------------------------------------------------------------
+# add in high kicking kicks in play as a treatment variable, (final position and kicks in play interaction term) and then explore the heterogeneity of the treatment effect across different teams since 2020 to see if the importance of kicking in play has changed over time with the introduction of advanced stats and changes in the points scoring system.
 
 
 six_nations_regression_df = six_nations_df.copy() # creating a copy of the cleaned dataframe to use for regression analysis
@@ -359,7 +397,18 @@ for ext in ['*.aux', '*.log', '*.pdf', '*.tex']:
 
 
 #------------------------------------------------------------------------------
-#--- (3) Estimate causal forest
+#--- (6) Creating visualisation of regression coefficients (box and whisker plot)
+#------------------------------------------------------------------------------
+
+
+#------------------------------------------------------------------------------
+#--- (7) Creating visualisation of relationship between attacking and defensive performance (scatter plot)
+#------------------------------------------------------------------------------
+
+
+
+#------------------------------------------------------------------------------
+#--- (8) Estimate causal forest
 #------------------------------------------------------------------------------
 
 #         Treatment: kick_metres_per_kick (continuous)
@@ -370,17 +419,6 @@ for ext in ['*.aux', '*.log', '*.pdf', '*.tex']:
 
 
 #------------------------------------------------------------------------------
-#--- (4) Visualise causal forest results
-#------------------------------------------------------------------------------
-
-#------------------------------------------------------------------------------
-#--- (5) Visualise heterogeneity by subgroups
-#            Suppose we want to explore heterogeneity in the treatment effect, 
-#            based on the level of education ('ba_quality' in this case).
-#------------------------------------------------------------------------------
-
-
-#------------------------------------------------------------------------------
-#--- (6) Which features are important in generating causal forest?
-#        Commented out as a bit slow
+#--- (9) Visualise causal forest results (CATEs)
+#the figure below shows the animated casual average treatment effects of the key performance metrics identified in the regression analysis on …
 #------------------------------------------------------------------------------
