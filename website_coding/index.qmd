@@ -74,11 +74,12 @@ In conclusion, this analysis has identified the key performance metrics that are
 ## References and Resources
 This is the references and resources section, which contains all the relevant information about the references and resources used in this project.
 
-**Data:** 
+**Data:**  
+
 > Six Nations Rugby. (2026) *Statistics*, (https://www.sixnationsrugby.com/en/m6n/stats)
 
 > Six Nations Rugby. (2026) *Fixtures and Results*, (https://www.sixnationsrugby.com/en/m6n/fixtures)
 
-**Coding:**
+**Coding:**  
 How to animate graphs
 > GeeksforGeeks. (2025, July). *Matplotlib.animation.FuncAnimation class in python*, (https://www.geeksforgeeks.org/matplotlib-animation-funcanimation-class-in-python/)on/
