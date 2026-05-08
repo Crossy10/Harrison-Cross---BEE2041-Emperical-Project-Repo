@@ -3,7 +3,9 @@ title: "Results from the data"
 ---
 ## Regression Results  
 The table below shows the results of the regression analysis, which identifies the key performance metrics that are most strongly associated with success in the Six Nations. 
-The table includes the coefficients and significance levels for each metric, allowing us to determine which factors are most important in driving success in international rugby. Each coefficient represents the increase in log odds of finishing in a higher position associated with a one-unit change in the respective metric, holding all other variables constant. The metrics with statistically significant coefficients are those that have a statistically significant impact on the finishing position in the Six Nations, and thus can be considered key drivers of success.
+
+The table includes the coefficients and significance levels for each metric, allowing us to determine which factors are most important in driving success in international rugby.  
+Each coefficient represents the increase in log odds of finishing in a higher position associated with a one-unit change in the respective metric, holding all other variables constant. The metrics with statistically significant coefficients are those that have a statistically significant impact on the finishing position in the Six Nations, and thus can be considered key drivers of success.
 
 ![](https://raw.githubusercontent.com/Crossy10/Harrison-Cross---BEE2041-Emperical-Project-Repo/main/results/tables/regressionTable.png){width=80% fig-align="center"}
 

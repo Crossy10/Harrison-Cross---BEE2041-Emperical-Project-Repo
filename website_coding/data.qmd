@@ -3,16 +3,16 @@ title: Data
 ---
 
 ## Clean Data Files  
-The dataset used in this project was collected primarily from the official Six Nations Rugby statistics database and fixture archives. Team-level statistics were gathered for all Six Nations tournaments between 2000 and 2026. These included attacking, defensive and tactical performance indicators such as:
-•	Goal kick success percentage
-•	Tackle success percentage
-•	Lineout success percentage
-•	Average  Post-contact metres per carry per game
-•	Winning percentage
-•	Average tries scored per game
-•	Average tries conceded per game
-•	Average Kicks in play per game
-•	Dominant tackles
+The dataset used in this project was collected primarily from the official Six Nations Rugby statistics database and fixture archives. Team-level statistics were gathered for all Six Nations tournaments between 2000 and 2026. These included attacking, defensive and tactical performance indicators such as:  
+- Goal kick success percentage  
+- Tackle success percentage  
+- Lineout success percentage  
+- Average  Post-contact metres per carry per game  
+- Winning percentage  
+- Average tries scored per game  
+- Average tries conceded per game  
+- Average Kicks in play per game  
+- Dominant tackles
 
 The full dataset can be found <a href="https://raw.githubusercontent.com/Crossy10/Harrison-Cross---BEE2041-Emperical-Project-Repo/main/data/clean_data/six_nations_CLEAN-DATA.csv" download>here</a>.
 
