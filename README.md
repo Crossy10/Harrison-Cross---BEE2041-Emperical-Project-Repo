@@ -303,7 +303,11 @@ To create my website, I used Quarto pages and generated a yml and used css to st
 > Six Nations Rugby. (2026) *Fixtures and Results*, (https://www.sixnationsrugby.com/en/m6n/fixtures)
 
 **Coding:**  
-pystout (LaTeX table export): [https://github.com/stephenholtz/pystout](https://github.com/stephenholtz/pystout)
+Generative AI used to help with Regression, Makefile and Webscrapping
+> Anthropic Claude. (2023). Claude [Large language model]. https://claude.ai
+
+LaTeX table export  
+> pystout: [https://github.com/stephenholtz/pystout](https://github.com/stephenholtz/pystout)
 
 How to animate graphs
 > GeeksforGeeks. (2025, July). *Matplotlib.animation.FuncAnimation class in python*, (https://www.geeksforgeeks.org/matplotlib-animation-funcanimation-class-in-python/)
