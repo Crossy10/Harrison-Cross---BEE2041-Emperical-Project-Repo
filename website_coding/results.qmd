@@ -1,6 +1,10 @@
 ---
 title: "Results from the data"
 ---
+**Page Word Count**: 160
+
+---
+
 ## Regression Results  
 The table below shows the results of the regression analysis, which identifies the key performance metrics that are most strongly associated with success in the Six Nations. 
 

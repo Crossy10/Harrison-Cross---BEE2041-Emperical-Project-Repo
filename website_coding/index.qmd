@@ -8,7 +8,9 @@ execute:
 ---
 University of Exeter | BEE2041__Data_Science_in_Economics__ | Empirical Project  
   
-**Page Word Count**: 464
+**Page Word Count**: 1507
+**Total Word Count across all pages**: 1909
+
 
 ---
 ## Introduction

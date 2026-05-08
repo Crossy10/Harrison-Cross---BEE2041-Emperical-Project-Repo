@@ -1,7 +1,9 @@
 ---
 title: Data
 ---
+**Page Word Count**: 235
 
+---
 ## Clean Data Files  
 The dataset used in this project was collected primarily from the official Six Nations Rugby statistics database and fixture archives. Team-level statistics were gathered for all Six Nations tournaments between 2000 and 2026. These included attacking, defensive and tactical performance indicators such as:  
 - Goal kick success percentage  
