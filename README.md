@@ -167,20 +167,27 @@ All raw data lives in `data/raw_data`, all source code in `source/`, and all out
 Install all dependencies via pip:
 
 ```bash
-pip install
+pip install pandas==3.0.2 numpy==2.4.4 matplotlib==3.10.8  pystout==0.0.8 pdf2image==1.17.0 pillow==12.2.0 statsmodels==0.14.6 scipy==1.17.1
 ```
 
 Or install without pinned versions (results may differ slightly):
 
 ```bash
-pip install 
+pip install pandas numpy matplotlib pystout pdf2image pillow statsmodels scipy
 ```
 
 The exact versions used to produce the original results are listed below:
 
 | Package | Version |
 |---|---|
-| `pandas` | 2.3.3 |
+| `pandas` | 3.0.2 |
+| `numpy` | 2.4.4 |
+| `matplotlib` | 3.10.8 |
+| `scipy` | 1.17.1 |
+| `statsmodels` | 0.14.6 |
+| `Pillow` | 12.2.0 |
+| `pdf2image` | 1.17.0 |
+| `pystout` | 0.0.8 |
 
 ---
 
