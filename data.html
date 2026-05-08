@@ -119,7 +119,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#raw-data-files" id="toc-raw-data-files" class="nav-link active" data-scroll-target="#raw-data-files">Raw Data Files</a></li>
+  <li><a href="#clean-data-files" id="toc-clean-data-files" class="nav-link active" data-scroll-target="#clean-data-files">Clean Data Files</a></li>
   </ul>
 </nav>
     </div>
@@ -145,8 +145,12 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="raw-data-files" class="level2">
-<h2 data-anchor-id="raw-data-files">Raw Data Files</h2>
+<section id="clean-data-files" class="level2">
+<h2 data-anchor-id="clean-data-files">Clean Data Files</h2>
+<p>The dataset used in this project was collected primarily from the official Six Nations Rugby statistics database and fixture archives. Team-level statistics were gathered for all Six Nations tournaments between 2000 and 2026. These included attacking, defensive and tactical performance indicators such as: • Goal kick success percentage • Tackle success percentage • Lineout success percentage • Average Post-contact metres per carry per game • Winning percentage • Average tries scored per game • Average tries conceded per game • Average Kicks in play per game • Dominant tackles</p>
+<p>The full dataset can be found <a href="https://raw.githubusercontent.com/Crossy10/Harrison-Cross---BEE2041-Emperical-Project-Repo/main/data/clean_data/six_nations_CLEAN-DATA.csv" download="">here</a>.</p>
+<p>We then use a subsection of the data set to be used in a Logit regression model. The dependent variable in the regression model is final tournament position, where 1 represents the championship winner and 6 represents the lowest-ranked team. Since finishing position is ordinal rather than continuous, an ordered logit model was used. This is appropriate because the difference between finishing 1st and 2nd is not necessarily equal to the difference between finishing 5th and 6th. The ordered logit regression estimates how changes in performance metrics affect the likelihood of achieving a better tournament finish. Negative coefficients indicate that an increase in the metric is associated with a better (lower-numbered) final position. For the results of this regression, click the link below to view the results pages<br>
+<a href="results.html">View Results →</a></p>
 
 
 </section>
