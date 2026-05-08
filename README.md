@@ -264,17 +264,19 @@ Running the pipeline produces the following files:
 
 | File | Description |
 |---|---|
-| `attackingPCM_vs_defensiveTSP_scatter.gif` |---|
-| `grand_slams.png` |---|
-| `kicks_in_play_dual_panel.gif` |---|
-| `regression_coefficients.png` |---|
-| `six_nations.gif` |---|
+| `attackingPCM_vs_defensiveTSP_scatter.gif` | dual plot Scatter graphs of  average post contact memeter against finishing position in the Six Nations and tackle success percentage against finishing higher in the Six Nations |
+| `grand_slams.png` | Bar chart of Gland Slams per team |
+| `kicks_in_play_dual_panel.gif` | dual pannel of line chart and scatter graph of how teams kicking has changed since 2020 and how it impacts the likelihood of finishing higher in the Six Nations |
+| `regression_coefficients.png` | Box and Whisper plot of the Logit regression coefficients |
+| `six_nations.gif` | Line graph of each teams' finishing position in the Six Nations over time (Since 2000) |
+---
 
 ### Tables (`results/tables/`)
 
 | File | Description |
 |---|---|
-| `regressionTable.png` | ---|
+| `regressionTable.png` | Logic Regression Table |
+---
 
 ## Methods
 ### Webscrapping
@@ -283,7 +285,10 @@ Web scraped relevant data off the Six Nations website as mentioned earlier and u
 This data is correctly referenced on the website and in the references section of this ReadME.
 
 ### Coding - Cleaning and Analysis
-asldkfj
+I cleaned the data and added some more metrics using the ones in the raw data to summarise per game and include percentages
+
+I then analysed to how the different performance metrics impact the probability to finishing higher in the Six Nations Championship, using the Logisitc Regression of performance metric on the probability of finishing higher.
+
 
 ### Website
 To create my website, I used Quarto pages and generated a yml and used css to style and can be accessed in the top of this repositiory
